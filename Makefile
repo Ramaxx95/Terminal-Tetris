@@ -52,7 +52,7 @@ OBJDIR = bin
 
 # Si no especifica archivos, tomo todos.
 srcfiles = $(shell find $(SRCDIR) -name '*.cpp')
-srcdirs = $(shell find . -name '*.cpp' | dirname{} | sort | uniq | sed 's/\/$(SRCDIR)//g')
+srcdirs = $(shell find $(SRCDIR) -type d | sed 's/$(SRCDIR)/./g')
 objs = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(srcfiles))
 
 # REGLAS
@@ -62,13 +62,14 @@ objs = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(srcfiles))
 
 all: $(target)
 
-$(target): $(objs) # buildrepo $(objs)
+$(target): buildrepo $(objs) # buildrepo $(objs)
+	@echo "### Linking project ###"
 	$(LD) $(objs) $(LIBS) -o $@
-	###
 
-$(objs): $(srcfiles)
-	$(COMPILER) $(COMPILERFLAGS) -c $< -o $@ 
-	###
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
+	@echo "### Compiling source file $< ###" 
+	$(COMPILER) $(COMPILERFLAGS) -c $< -o $@
+	@echo
 	
 clean-obj:
 	$(RM) -f $(objs)
@@ -82,7 +83,7 @@ buildrepo:
 # Create obj directory structure
 define make-repo
 	mkdir -p $(OBJDIR)
-	for dir in $(SRCDIRS); \
+	for dir in $(srcdirs); \
 	do \
 		mkdir -p $(OBJDIR)/$$dir; \
 	done
