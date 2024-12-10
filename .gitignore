@@ -1,0 +1,6 @@
+#directorios
+.vscode
+bin
+
+#ejecutable
+tetris
