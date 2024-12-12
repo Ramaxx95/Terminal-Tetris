@@ -38,7 +38,7 @@ ifdef static
 LDFLAGS += -static
 endif
 
-# Se reutilizan los flags de C para C++ tambiÃ©n
+# Se reutilizan los flags de C para C++ también
 CXXFLAGS += $(CFLAGS)
 
 CXXFLAGS += -std=$(CXXSTD)

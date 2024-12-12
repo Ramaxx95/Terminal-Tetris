@@ -4,16 +4,16 @@
 #include <chrono>
 #include <thread>
 
-#include "tmp/print.h"
+#include "model/game.h"
 
 #define BLANK ".."
 #define SQUARE "[]"
 
-// Compilacion por ahora:  g++ main.cpp -o tetris
-
 int main(int argc, char* argv[]){
 
-    print_msg();
+    Game main_game = Game();
+
+    main_game.start();
     // bool running = true;
     // int counter = 0;
 
