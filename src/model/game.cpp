@@ -15,10 +15,15 @@ int Game::start() {
         int player_input = 0;
         std::cin >> player_input;
         
+        std::system("clear");
+        
         switch (player_input){
             case PLAY_GAME:
-                // Generar entorno de juego (nuevo thread?)
-                break;
+                {
+                    GameLoop gameloop = GameLoop();
+                    gameloop.start();
+                    break;
+                }
 
             case SEE_HIGHSCORES:
                 // Mostrar los highscores y volver al inicio
@@ -29,7 +34,6 @@ int Game::start() {
                 break;     
             
             default:
-                std::system("clear");
                 std::cerr << "Wrong value entered. Please try again\n";
                 std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 break;

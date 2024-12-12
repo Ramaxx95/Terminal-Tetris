@@ -1,10 +1,8 @@
 #include "gameloop.h"
 
-GameLoop::GameLoop() : is_running(true) {}
+GameLoop::GameLoop() : is_running(true), player(Player()) {}
 
 int GameLoop::start(){
-
-    // Setear Player
 
     // Setear GameWindow
 
@@ -12,6 +10,8 @@ int GameLoop::start(){
 
     while (this->is_running) {
         /* code */
+        std::cout << "[DEBUG] El juego esta corriendo...\n";
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
         this->is_running = false;
     }
     

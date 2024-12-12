@@ -2,12 +2,18 @@
 #define GAMELOOP_H
 
 #include <iostream>
+// DEBUG
+#include <chrono>
+#include <thread>
+// DEBUG
+
+#include "player.h"
 
 class GameLoop {
 
     private:
         bool is_running;
-        // Player player; -> {score, tetrimino, name}
+        Player player; 
         // GameWindow window;
         // Board game_board;
 
