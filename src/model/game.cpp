@@ -30,7 +30,7 @@ int Game::start() {
             
             default:
                 std::system("clear");
-                std::cerr << "Valor ingresado erroneo. Intente nuevamente\n";
+                std::cerr << "Wrong value entered. Please try again\n";
                 std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 break;
         }
