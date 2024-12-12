@@ -15,4 +15,14 @@ int Player::updateScore(unsigned int add_score){
     return 0;
 }
 
+std::string Player::getName() {
+
+    return this->name;
+}
+
+unsigned int Player::getScore() {
+
+    return this->score;
+}
+
 Player::~Player() {}

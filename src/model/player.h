@@ -15,6 +15,9 @@ class Player {
         Player();
         int updateScore(unsigned int add_score);
         // int rotatePiece();
+
+        std::string getName();
+        unsigned int getScore();
         ~Player();
 }; 
 
