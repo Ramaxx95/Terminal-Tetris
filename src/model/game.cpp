@@ -16,7 +16,7 @@ int Game::start() {
         std::cin >> player_input;
         
         std::system("clear");
-        
+
         switch (player_input){
             case PLAY_GAME:
                 {
@@ -26,17 +26,23 @@ int Game::start() {
                 }
 
             case SEE_HIGHSCORES:
-                // Mostrar los highscores y volver al inicio
-                break;
+                {
+                    // Mostrar los highscores y volver al inicio
+                    std::cout << "[DEBUG] Mostrando Highscores...\n";
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                    break;
+                }
 
             case QUIT_GAME:
                 this->is_running = false;
                 break;     
             
             default:
-                std::cerr << "Wrong value entered. Please try again\n";
-                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-                break;
+                {
+                    std::cerr << "Wrong value entered. Please try again\n";
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                    break;
+                }
         }
 
         // Limpiar pantalla
