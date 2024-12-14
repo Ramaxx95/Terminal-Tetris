@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
 
 #define TOP 3 // columna tope que el jugador puede ver
 
@@ -20,6 +21,7 @@ class Board {
     public:
         Board();
         int update();
+        void showBoard();
         ~Board();
 }; 
 

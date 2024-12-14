@@ -8,6 +8,7 @@
 // DEBUG
 
 #include "player.h"
+#include "board.h"
 
 class GameLoop {
 
@@ -15,7 +16,7 @@ class GameLoop {
         bool is_running;
         Player player; 
         // GameWindow window;
-        // Board game_board;
+        Board game_board;
 
         void determineEndGame();
 

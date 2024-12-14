@@ -26,6 +26,8 @@ int Board::update(){
 
     size_t row_size = this->game_board.size();
     size_t column_size = this->game_board[0].size();
+
+    // updatePlayerPiece();
      
     for(size_t i = row_size; i > 0; i--){
         for(size_t j = 0; j < column_size; j++){
@@ -39,6 +41,18 @@ int Board::update(){
         }
     }
     return 0;
+}
+
+void Board::showBoard(){
+
+    for(size_t i = 0; i < this->game_board.size(); i++){
+        for(size_t j = 0; j < this->game_board[i].size(); j++){
+
+            std::cout << this->game_board[i][j];
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
 }
 
 int Board::deleteFullRow(size_t row){

@@ -1,12 +1,12 @@
 #include "gameloop.h"
 
-GameLoop::GameLoop() : is_running(true), player(Player()) {}
+GameLoop::GameLoop() : is_running(true), player(Player()), game_board(Board()) {}
 
 int GameLoop::start(){
 
     // Setear GameWindow
 
-    // Setear Board
+    this->game_board.showBoard();
 
     while (this->is_running) {
         /* code */
