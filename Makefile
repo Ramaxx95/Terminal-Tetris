@@ -18,6 +18,9 @@ else
 CFLAGS += -O0
 endif
 
+# Para valgrind o debug
+CFLAGS += -ggdb -DDEBUG -fno-inline
+
 # Opciones del enlazador.
 LDFLAGS =
 

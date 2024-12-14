@@ -12,8 +12,12 @@ int Game::start() {
                   << "2. Highscores\n"
                   << "3. Quit\n";
 
-        int player_input = 0;
+        int player_input;
         std::cin >> player_input;
+
+        // Limpia el input en caso erroneo e ignora valores que no sean int
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         
         std::system("clear");
 
@@ -39,7 +43,7 @@ int Game::start() {
             
             default:
                 {
-                    std::cerr << "Wrong value entered. Please try again\n";
+                    std::cout << "Wrong value entered. Please try again\n";
                     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                     break;
                 }

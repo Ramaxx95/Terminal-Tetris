@@ -4,6 +4,8 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include <limits>
+#include <ios>
 
 #include "gameloop.h"
 
