@@ -1,9 +1,11 @@
 #include "block.h"
 
-Block::Block() : upper_side(nullptr),
-                 lower_side(nullptr),
-                 right_side(nullptr),
-                 left_side(nullptr) {}
+Block::Block(int x, int y) : x(x),
+                             y(y),
+                             upper_side(nullptr),
+                             lower_side(nullptr),
+                             right_side(nullptr),
+                             left_side(nullptr) {}
 
 int Block::addBlock(const AddFlag flag, Block* add_blk){
 
@@ -20,23 +22,42 @@ int Block::addBlock(const AddFlag flag, Block* add_blk){
     switch (flag){
         case UPPER_SIDE:
             this->upper_side = add_blk;
+            add_blk->lower_side = this;
             break;
 
         case LOWER_SIDE:
             this->lower_side = add_blk;
+            add_blk->upper_side = this;
             break;
 
         case RIGHT_SIDE:
             this->right_side = add_blk;
+            add_blk->left_side = this;
             break;
 
         case LEFT_SIDE:
             this->left_side = add_blk;
+            add_blk->right_side = this;
             break;
     
         default:
             break;
     }
+    return 0;
+}
+
+bool Block::lowerSideOccupied(){
+
+    if(this->lower_side){
+        return true;
+    }
+    return false;
+}
+
+int Block::getPosition(int& pos_x, int& pos_y){
+
+    pos_x = this->x;
+    pos_y = this->y;
     return 0;
 }
 

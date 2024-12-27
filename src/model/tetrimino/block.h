@@ -19,13 +19,15 @@ enum AddFlag{
 class Block{
 
     private:
+        int x;
+        int y;
         Block* upper_side;
         Block* lower_side;
         Block* right_side;
         Block* left_side;
 
     public:
-        Block();
+        Block(int x, int y);
 
         // Agrega un bloque al lado indicado por el flag
         //
@@ -35,6 +37,13 @@ class Block{
         // flag: lado del bloque a donde se quiere añadir otro
         // add_blk: puntero a bloque que se quiere añadir (no puede ser NULL)
         int addBlock(const AddFlag flag, Block* add_blk);
+
+        // Devuelve si el lado de abajo contiene un bloque
+        bool lowerSideOccupied();
+
+        // Guarda la posicion del bloque en los argumentos
+        // 'pos_x' y 'pos_y'
+        int getPosition(int& pos_x, int& pos_y);
         ~Block();
 
 };
