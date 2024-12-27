@@ -2,6 +2,8 @@
 
 Tetrimino::Tetrimino() : x(0), y(0), width(0), height(0){}
 
+Tetrimino::Tetrimino(int x, int y, int w, int h) : x(x), y(y), width(w), height(h){}
+
 bool Tetrimino::isAnyBlockColliding(int x_thres, int y_thres){
 
     int pos_x, pos_y = 0;

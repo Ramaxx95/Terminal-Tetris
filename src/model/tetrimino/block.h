@@ -29,7 +29,8 @@ class Block{
     public:
         Block(int x, int y);
 
-        // Agrega un bloque al lado indicado por el flag
+        // Agrega un bloque al lado indicado por el flag, mientras que el bloque agregado
+        // se ocupa de agregar al que invoca este metodo
         //
         // Devuelve -1 en caso de error
         // Devuelve 0 en caso exitoso

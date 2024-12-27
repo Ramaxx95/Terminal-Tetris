@@ -29,6 +29,8 @@ class Tetrimino{
 
         Tetrimino();
 
+        Tetrimino(int x, int y, int w, int h);
+
         virtual int rotate() = 0;
 
         bool isAnyBlockColliding(int x_thres, int y_thres);
