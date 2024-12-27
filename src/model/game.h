@@ -13,6 +13,7 @@
 #define SEE_HIGHSCORES 2
 #define QUIT_GAME 3
 
+// Clase principal del programa
 class Game {
 
     private:

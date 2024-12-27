@@ -7,6 +7,7 @@
 
 #define TOP 3 // columna tope que el jugador puede ver
 
+// Clase encargada de la logica del tablero
 class Board {
 
     private:

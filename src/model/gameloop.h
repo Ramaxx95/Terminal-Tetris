@@ -10,6 +10,7 @@
 #include "player.h"
 #include "board.h"
 
+// Clase encargada del loop de juego
 class GameLoop {
 
     private:

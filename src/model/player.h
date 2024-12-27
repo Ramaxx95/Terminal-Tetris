@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 
+// Clase encargada de la logica del Jugador
 class Player {
 
     private:
