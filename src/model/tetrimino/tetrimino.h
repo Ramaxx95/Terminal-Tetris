@@ -35,6 +35,12 @@ class Tetrimino{
 
         bool isAnyBlockColliding(int x_thres, int y_thres);
 
+        int changePosition(int x, int y);
+
+        int getPosition(int& x, int& y);
+
+        int getBlockPositions(std::vector<int>& x, std::vector<int>& y);
+
         virtual ~Tetrimino();
 
 };

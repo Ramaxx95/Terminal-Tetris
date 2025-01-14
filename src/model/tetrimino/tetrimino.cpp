@@ -26,4 +26,34 @@ bool Tetrimino::isAnyBlockColliding(int x_thres, int y_thres){
     return false;
 }
 
+int Tetrimino::changePosition(int x, int y){
+
+    this->x = x;
+    this->y = y;
+
+    // TODO: falta updatear los blocks
+
+    return 0;
+}
+
+int Tetrimino::getPosition(int& x, int& y){
+
+    x = this->x;
+    y = this->y;
+
+    return 0;
+}
+
+int Tetrimino::getBlockPositions(std::vector<int>& x, std::vector<int>& y){
+
+    int blk_x, blk_y;
+
+    for(size_t i = 0; i < this->blocks.size(); i++){
+        this->blocks.at(i).getPosition(blk_x, blk_y);
+        x.push_back(blk_x);
+        y.push_back(blk_y);
+    }
+    return 0;
+}
+
 Tetrimino::~Tetrimino(){}

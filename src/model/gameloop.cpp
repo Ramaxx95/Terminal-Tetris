@@ -12,19 +12,25 @@ int GameLoop::start(){
     int counter = 0;
     /*** DEBUG ***/
 
+    // pieza con la que arranca el jugador
+    this->game_board.generateNewPiece();
+
     while (this->is_running) {
         /* code */
         std::cout << "[DEBUG] El juego esta corriendo...\n";
         std::cout << "[DEBUG] Jugador: " << this->player.getName()
                   << " Score: " << this->player.getScore() << std::endl;
-        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
         if(counter == 5){
             this->is_running = false;
         }
         else {
+            this->game_board.update();
+            this->game_board.showBoard();
             counter++;
         }
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        std::system("clear");
     }
     
     return 0;

@@ -6,6 +6,7 @@
 #include <iostream>
 
 #include "tetrimino/tetrimino.h"
+#include "tetriminoFactory.h"
 
 #define TOP 3 // columna tope que el jugador puede ver
 
@@ -21,9 +22,12 @@ class Board {
 
         int deleteFullRow(size_t row);
         int dropBlocks(size_t row, size_t column);
+        int updatePlayerPiece();
+        int printPlayerPiece();
 
     public:
         Board();
+        int generateNewPiece();
         int update();
         void showBoard();
         ~Board();
