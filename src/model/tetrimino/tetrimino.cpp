@@ -4,6 +4,11 @@ Tetrimino::Tetrimino() : x(0), y(0), width(0), height(0){}
 
 Tetrimino::Tetrimino(int x, int y, int w, int h) : x(x), y(y), width(w), height(h){}
 
+int Tetrimino::rotate(){
+    // Para la clase base, no hace nada
+    return 0;
+}
+
 bool Tetrimino::isAnyBlockColliding(int x_thres, int y_thres){
 
     int pos_x, pos_y = 0;
