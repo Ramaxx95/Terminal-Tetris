@@ -28,10 +28,21 @@ bool Tetrimino::isAnyBlockColliding(int x_thres, int y_thres){
 
 int Tetrimino::changePosition(int x, int y){
 
+    // Guardo como cambia la posicion
+    int x_off, y_off;
+    x_off = x - this->x;
+    y_off = y - this->y;
+
+    // Actualizo la posicion
     this->x = x;
     this->y = y;
 
-    // TODO: falta updatear los blocks
+    // Actualizo cada bloque
+    int blk_x, blk_y;
+    for(size_t i = 0; i < this->blocks.size(); i++){
+        this->blocks.at(i).getPosition(blk_x, blk_y);
+        this->blocks.at(i).changePosition(blk_x + x_off, blk_y + y_off);
+    }
 
     return 0;
 }

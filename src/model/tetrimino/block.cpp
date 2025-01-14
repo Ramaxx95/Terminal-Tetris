@@ -61,6 +61,13 @@ int Block::getPosition(int& pos_x, int& pos_y){
     return 0;
 }
 
+int Block::changePosition(int x, int y){
+
+    this->x = x;
+    this->y = y;
+    return 0;
+}
+
 Block::~Block(){
     this->upper_side = nullptr;
     this->lower_side = nullptr;

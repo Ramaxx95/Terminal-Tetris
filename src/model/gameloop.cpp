@@ -6,8 +6,6 @@ int GameLoop::start(){
 
     // Setear GameWindow
 
-    this->game_board.showBoard();
-
     /*** DEBUG ***/
     int counter = 0;
     /*** DEBUG ***/

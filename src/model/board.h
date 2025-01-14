@@ -24,6 +24,7 @@ class Board {
         int dropBlocks(size_t row, size_t column);
         int updatePlayerPiece();
         int printPlayerPiece();
+        int erasePlayerPiece();
 
     public:
         Board();

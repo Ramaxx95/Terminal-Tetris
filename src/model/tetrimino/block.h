@@ -45,6 +45,9 @@ class Block{
         // Guarda la posicion del bloque en los argumentos
         // 'pos_x' y 'pos_y'
         int getPosition(int& pos_x, int& pos_y);
+
+        // Cambiar la posicion del bloque
+        int changePosition(int x, int y);
         ~Block();
 
 };

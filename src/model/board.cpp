@@ -78,6 +78,9 @@ int Board::updatePlayerPiece(){
 
     int x, y;
     this->player_piece.getPosition(x, y);
+
+    erasePlayerPiece();
+    
     this->player_piece.changePosition(x, y + 1);
 
     printPlayerPiece();
@@ -98,6 +101,19 @@ int Board::printPlayerPiece(){
         this->game_board[y.at(i)][x.at(i)] = '1';
     }
     
+    return 0;
+}
+
+int Board::erasePlayerPiece(){
+
+    std::vector<int> x, y;
+
+    this->player_piece.getBlockPositions(x, y);
+    size_t vector_size = x.size();
+
+    for(size_t i = 0; i < vector_size; i++){
+        this->game_board[y.at(i)][x.at(i)] = '0';
+    }
     return 0;
 }
 
