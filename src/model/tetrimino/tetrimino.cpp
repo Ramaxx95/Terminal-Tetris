@@ -67,4 +67,21 @@ int Tetrimino::getBlockPositions(std::vector<int>& x, std::vector<int>& y){
     return 0;
 }
 
+int Tetrimino::getLowestBlockPosition(){
+
+    int tmp_x, tmp_y, floor = 0;
+    this->blocks[0].getPosition(tmp_x, floor);
+
+    for(size_t i = 1; i < this->blocks.size(); i++){
+
+        this->blocks[i].getPosition(tmp_x, tmp_y);
+        if(tmp_y > floor){
+            floor = tmp_y;
+        }
+
+    }
+
+    return floor;
+}
+
 Tetrimino::~Tetrimino(){}

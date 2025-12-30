@@ -41,6 +41,8 @@ class Tetrimino{
 
         int getBlockPositions(std::vector<int>& x, std::vector<int>& y);
 
+        int getLowestBlockPosition();
+
         virtual ~Tetrimino();
 
 };

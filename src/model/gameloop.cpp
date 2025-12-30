@@ -14,12 +14,15 @@ int GameLoop::start(){
     this->game_board.generateNewPiece();
 
     while (this->is_running) {
-        /* code */
-        std::cout << "[DEBUG] El juego esta corriendo...\n";
+        
         std::cout << "[DEBUG] Jugador: " << this->player.getName()
                   << " Score: " << this->player.getScore() << std::endl;
 
-        if(counter == 5){
+        if(this->game_board.playerPieceReachedBottom() || this->game_board.playerPieceStopped()){
+            this->game_board.generateNewPiece();
+        }
+
+        if(counter == 50){
             this->is_running = false;
         }
         else {

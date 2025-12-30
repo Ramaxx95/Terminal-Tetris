@@ -33,8 +33,6 @@ int Board::update(){
 
     size_t row_size = this->game_board.size();
     size_t column_size = this->game_board[0].size();
-
-    updatePlayerPiece();
      
     for(size_t i = row_size - 1; i > 0; i--){
         for(size_t j = 0; j < column_size; j++){
@@ -47,7 +45,36 @@ int Board::update(){
             }
         }
     }
+
+    updatePlayerPiece();
+
     return 0;
+}
+
+bool Board::playerPieceReachedBottom(){
+    int piece_floor = this->player_piece.getLowestBlockPosition();
+    return piece_floor >= (int) (this->game_board.size() - 1);
+}
+
+bool Board::playerPieceStopped(){
+    int pos_x, pos_y = 0;
+    size_t row_size = this->game_board.size();
+    size_t column_size = this->game_board[0].size();
+
+    for(size_t i = row_size - 1; i > 0; i--){
+        for(size_t j = 0; j < column_size; j++){
+            if(this->game_board[i][j] == '1'){
+                pos_x = j;
+                pos_y = i;
+
+                if(this->player_piece.isAnyBlockColliding(pos_x, pos_y)){
+                    return true;
+                }
+            }
+            
+        }
+    }
+    return false;
 }
 
 void Board::showBoard(){
@@ -80,7 +107,10 @@ int Board::updatePlayerPiece(){
     this->player_piece.getPosition(x, y);
 
     erasePlayerPiece();
-    
+
+    // TODO: verificar que la pieza se pose encima del pilon o
+    //       haya llegado al fin del tablero -> eliminar pieza
+    //       y spawnear otra
     this->player_piece.changePosition(x, y + 1);
 
     printPlayerPiece();
