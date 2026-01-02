@@ -19,6 +19,7 @@ int GameLoop::start(){
                   << " Score: " << this->player.getScore() << std::endl;
 
         if(this->game_board.playerPieceReachedBottom() || this->game_board.playerPieceStopped()){
+            this->game_board.clearLinesOfBlocks();
             this->game_board.generateNewPiece();
         }
 
@@ -30,7 +31,7 @@ int GameLoop::start(){
             this->game_board.showBoard();
             counter++;
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
         std::system("clear");
     }
     

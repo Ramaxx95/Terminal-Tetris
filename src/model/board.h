@@ -30,6 +30,7 @@ class Board {
         Board();
         int generateNewPiece();
         int update();
+        int clearLinesOfBlocks();
         bool playerPieceReachedBottom();
         bool playerPieceStopped();
         void showBoard();

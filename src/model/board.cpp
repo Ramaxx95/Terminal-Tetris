@@ -17,8 +17,8 @@ Board::Board() : top_reached(false) {
                         {'0','0','0','0','0','0','0','0'},
                         {'0','0','0','0','0','0','0','0'},
                         {'0','0','0','0','0','0','0','0'},
-                        {'0','0','0','0','0','0','0','0'},
-                        {'0','0','0','0','0','0','0','0'},
+                        {'1','1','1','0','0','1','1','1'},
+                        {'1','1','1','0','0','1','1','1'},
                         {'1','1','1','0','0','1','1','1'}};
 }
 
@@ -31,6 +31,14 @@ int Board::generateNewPiece(){
 
 int Board::update(){
 
+    //TODO: refactorizar esta funcion cuando haya movilidad y rotacion por
+    //      parte del input del jugador
+    updatePlayerPiece();
+    return 0;
+}
+
+int Board::clearLinesOfBlocks(){
+    
     size_t row_size = this->game_board.size();
     size_t column_size = this->game_board[0].size();
      
@@ -42,11 +50,10 @@ int Board::update(){
             }
             else if(j == column_size - 1){
                 deleteFullRow(i);
+                i++;
             }
         }
     }
-
-    updatePlayerPiece();
 
     return 0;
 }
