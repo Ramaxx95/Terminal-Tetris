@@ -39,6 +39,11 @@ int Board::update(){
 
 int Board::clearLinesOfBlocks(){
     
+    //TODO: agregar como argumento (o tal vez como propiedad de Board) el 'level' en el que
+    //      esta el jugador (eso multiplica el score cuanto mayor sea el level)
+
+    int resulting_score = 0;
+
     size_t row_size = this->game_board.size();
     size_t column_size = this->game_board[0].size();
      
@@ -50,12 +55,13 @@ int Board::clearLinesOfBlocks(){
             }
             else if(j == column_size - 1){
                 deleteFullRow(i);
+                resulting_score += 100 /* * level*/;
                 i++;
             }
         }
     }
 
-    return 0;
+    return resulting_score;
 }
 
 bool Board::playerPieceReachedBottom(){
@@ -75,6 +81,9 @@ bool Board::playerPieceStopped(){
                 pos_y = i;
 
                 if(this->player_piece.isAnyBlockColliding(pos_x, pos_y)){
+                    if(i <= TOP){
+                        this->top_reached = true;
+                    }
                     return true;
                 }
             }
@@ -82,6 +91,11 @@ bool Board::playerPieceStopped(){
         }
     }
     return false;
+}
+
+bool Board::playerReachedTop(){
+   
+    return this->top_reached;
 }
 
 void Board::showBoard(){
@@ -126,8 +140,6 @@ int Board::updatePlayerPiece(){
 }
 
 int Board::printPlayerPiece(){
-
-    // TODO: primero, convertir en '0' la posicion actual
 
     std::vector<int> x, y;
 

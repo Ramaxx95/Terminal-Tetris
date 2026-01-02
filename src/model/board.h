@@ -8,7 +8,7 @@
 #include "tetrimino/tetrimino.h"
 #include "tetriminoFactory.h"
 
-#define TOP 3 // columna tope que el jugador puede ver
+#define TOP 3 // fila tope que el jugador puede ver
 
 // Clase encargada de la logica del tablero
 class Board {
@@ -33,6 +33,7 @@ class Board {
         int clearLinesOfBlocks();
         bool playerPieceReachedBottom();
         bool playerPieceStopped();
+        bool playerReachedTop();
         void showBoard();
         ~Board();
 }; 

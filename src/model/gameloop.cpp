@@ -18,19 +18,26 @@ int GameLoop::start(){
         std::cout << "[DEBUG] Jugador: " << this->player.getName()
                   << " Score: " << this->player.getScore() << std::endl;
 
+        if(this->game_board.playerReachedTop()){
+            std::system("clear");
+            std::cout << "[DEBUG] Jugador: " << this->player.getName()
+                  << " Score: " << this->player.getScore() << std::endl;
+            std::this_thread::sleep_for(std::chrono::milliseconds(1500));
+
+            this->is_running = false;
+            continue;
+        }
+        
         if(this->game_board.playerPieceReachedBottom() || this->game_board.playerPieceStopped()){
-            this->game_board.clearLinesOfBlocks();
+            int score_achieved = this->game_board.clearLinesOfBlocks();
+            this->player.updateScore(score_achieved);
             this->game_board.generateNewPiece();
         }
 
-        if(counter == 50){
-            this->is_running = false;
-        }
-        else {
-            this->game_board.update();
-            this->game_board.showBoard();
-            counter++;
-        }
+        this->game_board.update();
+        this->game_board.showBoard();
+        counter++;
+        
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
         std::system("clear");
     }
