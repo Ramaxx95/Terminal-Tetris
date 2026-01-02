@@ -38,7 +38,10 @@ int GameLoop::start(){
         this->game_board.showBoard();
         counter++;
         
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        //TODO: reemplazar el 'sleep' por el 'counter' de arriba -> una vez que el counter llega
+        //      a un umbral dado por el 'level' actual, que se actualice la pantalla, score, etc.
+        //      Mientras NO se haya llegado al umbral, el jugador puede mover y rotar su pieza.
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));
         std::system("clear");
     }
     
