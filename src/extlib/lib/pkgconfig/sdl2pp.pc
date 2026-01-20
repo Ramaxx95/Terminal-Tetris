@@ -1,0 +1,12 @@
+prefix=/home/ramaxx95/Documents/Projects/Tetris/src/extlib
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: sdl2pp
+Description: C++ bindings/wrappers for SDL2
+Version: 
+Requires: sdl2
+Conflicts:
+Libs:  -L${libdir} -lSDL2pp
+Cflags: -I${includedir}
