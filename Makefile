@@ -50,9 +50,8 @@ COMPILER = $(CXX)
 COMPILERFLAGS = $(CXXFLAGS)
 
 # Agrego librerias externas.
-CXXFLAGS += $(shell pkg-config --cflags sdl2)
-CXXFLAGS += -Isrc/extlib/include
-LIBS += $(shell pkg-config --libs sdl2)
+# CXXFLAGS += -Isrc/extlib/include
+LIBS += -lncurses
 
 # Directorios
 SRCDIR = src
@@ -76,7 +75,7 @@ $(target): buildrepo $(objs) # buildrepo $(objs)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	@echo "### Compiling source file $< ###" 
-	$(COMPILER) $(COMPILERFLAGS) -v -c $< -o $@
+	$(COMPILER) $(COMPILERFLAGS) -c $< -o $@
 	@echo
 	
 clean-obj:

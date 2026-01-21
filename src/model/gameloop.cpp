@@ -1,4 +1,5 @@
 #include "gameloop.h"
+#include "../controller/input.h"
 
 GameLoop::GameLoop() : is_running(true), player(Player()), game_board(Board()) {}
 
@@ -13,15 +14,27 @@ int GameLoop::start(){
     // pieza con la que arranca el jugador
     this->game_board.generateNewPiece();
 
+    // byte que guarda el input recibido (para DEBUG nada mas)
+    uint8_t input_received = 0;
+
+    // Inicializo el input del jugador
+    Input player_input = Input(this->is_running);
+
     while (this->is_running) {
         
         std::cout << "[DEBUG] Jugador: " << this->player.getName()
                   << " Score: " << this->player.getScore() << std::endl;
 
+        input_received = player_input.getInput();
+        if(input_received){
+            std::cout << "[DEBUG] Input recibido: " << (int) input_received << std::endl;
+        }
+
         if(this->game_board.playerReachedTop()){
             std::system("clear");
-            std::cout << "[DEBUG] Jugador: " << this->player.getName()
-                  << " Score: " << this->player.getScore() << std::endl;
+            std::cout << "\t\tFin del juego!" << std::endl 
+                      << "\t\tJugador: " << this->player.getName() << std::endl
+                      << "\t\tScore:   " << this->player.getScore() << std::endl;
             std::this_thread::sleep_for(std::chrono::milliseconds(1500));
 
             this->is_running = false;
@@ -44,7 +57,7 @@ int GameLoop::start(){
         std::this_thread::sleep_for(std::chrono::milliseconds(200));
         std::system("clear");
     }
-    
+
     return 0;
 }
 
