@@ -4,6 +4,8 @@ Game::Game() : is_running(true){}
 
 int Game::start() {
 
+    std::system("clear");
+    
     // main loop
     while (this->is_running){
         

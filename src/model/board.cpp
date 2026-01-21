@@ -110,6 +110,10 @@ void Board::showBoard(){
     std::cout << std::endl;
 }
 
+std::vector<std::vector<char>> Board::getBoard() {
+    return this->game_board;
+}
+
 int Board::deleteFullRow(size_t row){
 
     for(size_t i = 0; i < this->game_board[row].size(); i++){

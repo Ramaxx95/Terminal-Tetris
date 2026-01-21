@@ -35,6 +35,7 @@ class Board {
         bool playerPieceStopped();
         bool playerReachedTop();
         void showBoard();
+        std::vector<std::vector<char>> getBoard();
         ~Board();
 }; 
 
