@@ -9,6 +9,11 @@
 #include "tetriminoFactory.h"
 
 #define TOP 3 // fila tope que el jugador puede ver
+const int move_piece_left =  -1;
+const int dont_move_piece =  0;
+const int move_piece_right =  1;
+const int move_piece_down =  2;
+const int move_piece_rotate =  3;
 
 // Clase encargada de la logica del tablero
 class Board {
@@ -25,11 +30,14 @@ class Board {
         int updatePlayerPiece();
         int printPlayerPiece();
         int erasePlayerPiece();
+        bool playerPieceIsTouchingLeft();
+        bool playerPieceIsTouchingRight();
 
     public:
         Board();
         int generateNewPiece();
         int update();
+        int movePiece(int interpreted_input);
         int clearLinesOfBlocks(int level, int& lines_cleared_total);
         bool playerPieceReachedBottom();
         bool playerPieceStopped();

@@ -1,5 +1,6 @@
 #include "gameloop.h"
 #include "../controller/input.h"
+#include "../controller/inputManager.h"
 #include "../view/gameWindow.h"
 
 GameLoop::GameLoop() : is_running(true), player(Player()), counter(0), level(1), lines_cleared(0), game_board(Board()) {}
@@ -13,6 +14,7 @@ int GameLoop::start(){
 
     // byte que guarda el input recibido (para DEBUG nada mas)
     uint8_t input_received = 0;
+    InputManager inputManager = InputManager();
 
     // Inicializo el input del jugador (ahora hay que usar ncurses)
     Input player_input = Input(this->is_running);
@@ -24,11 +26,11 @@ int GameLoop::start(){
 
         input_received = player_input.getInput();
         if(input_received){
-            mvprintw(30, 0, "[DEBUG] Input recibido: ");
-            mvaddch(30, 25, input_received);
+            mvprintw(30, 0, "[DEBUG] Input recibido: %c", input_received);
         }
 
         if(this->counter >= curr_level_counter){
+            
             if(this->game_board.playerReachedTop()){
                 window.showEndGame();
                 this->is_running = false;
@@ -55,7 +57,7 @@ int GameLoop::start(){
             this->counter = 0;
         }
         else {
-            //update movimiento del jugador
+            game_board.movePiece(inputManager.interpretInput(input_received));
         }
         this->counter++;
 

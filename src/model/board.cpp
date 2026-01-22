@@ -5,10 +5,10 @@ Board::Board() : top_reached(false) {
                         {'0','0','0','0','0','0','0','0'},
                         {'0','0','0','0','0','0','0','0'},
                         {'0','0','0','0','0','0','0','0'},
-                        {'1','1','1','0','0','1','1','1'},
-                        {'1','1','1','0','0','1','1','1'},
-                        {'1','1','1','0','0','1','1','1'},
-                        {'1','1','1','0','0','1','1','1'},
+                        {'0','0','0','0','0','0','0','0'},
+                        {'0','0','0','0','0','0','0','0'},
+                        {'0','0','0','0','0','0','0','0'},
+                        {'0','0','0','0','0','0','0','0'},
                         {'1','1','1','0','0','1','1','1'},
                         {'1','1','1','0','0','1','1','1'},
                         {'1','1','1','0','0','1','1','1'},
@@ -31,9 +31,47 @@ int Board::generateNewPiece(){
 
 int Board::update(){
 
-    //TODO: refactorizar esta funcion cuando haya movilidad y rotacion por
-    //      parte del input del jugador
     updatePlayerPiece();
+    return 0;
+}
+
+int Board::movePiece(int interpreted_input){
+
+    int x = 0, y = 0;
+    this->player_piece.getPosition(x, y);
+
+    if(interpreted_input != dont_move_piece){
+        this->erasePlayerPiece();
+        switch (interpreted_input)
+        {
+            case move_piece_left:
+                if(!playerPieceIsTouchingLeft()){
+                    this->player_piece.changePosition(x - 1, y);
+                }
+                break;
+
+            case move_piece_right:
+                if(!playerPieceIsTouchingRight()){
+                    this->player_piece.changePosition(x + 1, y);
+                }
+                break;
+
+            case move_piece_down:
+                this->player_piece.changePosition(x, y + 1);
+                break;
+            
+            // TODO: implementar rotar piezas
+            // case move_piece_rotate:
+            //     this->player_piece.rotate();
+            //     break;
+            
+            default:
+                break;
+        }
+        this->printPlayerPiece();
+    }
+    
+
     return 0;
 }
 
@@ -79,7 +117,7 @@ bool Board::playerPieceStopped(){
                 pos_x = j;
                 pos_y = i;
 
-                if(this->player_piece.isAnyBlockColliding(pos_x, pos_y)){
+                if(this->player_piece.isAnyBlockCollidingBottom(pos_x, pos_y)){
                     if(i <= TOP){
                         this->top_reached = true;
                     }
@@ -124,17 +162,11 @@ int Board::deleteFullRow(size_t row){
 
 int Board::updatePlayerPiece(){
 
-    // Cuando haya Player Input -> tiene que ser argumento para donde
-    // mover la pieza
-
     int x, y;
     this->player_piece.getPosition(x, y);
 
     erasePlayerPiece();
 
-    // TODO: verificar que la pieza se pose encima del pilon o
-    //       haya llegado al fin del tablero -> eliminar pieza
-    //       y spawnear otra
     this->player_piece.changePosition(x, y + 1);
 
     printPlayerPiece();
@@ -185,6 +217,52 @@ int Board::dropBlocks(size_t row, size_t column){
     }
     
     return 0;
+}
+
+bool Board::playerPieceIsTouchingLeft() {
+
+    std::vector<int> x, y;
+    int outmost_left_block = 0, left_limit = 0;
+    std::vector<int> x_limit, y_limit; // guardamos los limites de los bloques izquierdos
+
+    outmost_left_block = this->player_piece.getLeftMostBlockPosition();
+
+    this->player_piece.getBlockPositionsThatMatch(outmost_left_block, x_limit, y_limit);
+
+    // Choca con el limite izquierdo 
+    if(outmost_left_block == left_limit){
+        return true;
+    }
+
+    for(size_t i = 0; i < x_limit.size(); i++){
+        if(this->game_board[y_limit[i]][x_limit[i] - 1] == '1'){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Board::playerPieceIsTouchingRight(){
+
+    std::vector<int> x, y;
+    int outmost_right_block = 0, right_limit = (int) this->game_board[0].size() - 1;
+    std::vector<int> x_limit, y_limit; // guardamos los limites de los bloques derechos
+
+    outmost_right_block = this->player_piece.getRightMostBlockPosition();
+
+    this->player_piece.getBlockPositionsThatMatch(outmost_right_block, x_limit, y_limit);
+
+    // Choca con el limite derecho 
+    if(outmost_right_block == right_limit){
+        return true;
+    }
+
+    for(size_t i = 0; i < x_limit.size(); i++){
+        if(this->game_board[y_limit[i]][x_limit[i] + 1] == '1'){
+            return true;
+        }
+    }
+    return false;
 }
 
 Board::~Board() {}

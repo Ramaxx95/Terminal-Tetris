@@ -33,7 +33,13 @@ class Tetrimino{
 
         virtual int rotate();
 
-        bool isAnyBlockColliding(int x_thres, int y_thres);
+        bool isAnyBlockCollidingBottom(int x_thres, int y_thres);
+
+        int getLeftMostBlockPosition();
+
+        int getBlockPositionsThatMatch(int x, std::vector<int>& x_blocks, std::vector<int>& y_blocks);
+
+        int getRightMostBlockPosition();
 
         int changePosition(int x, int y);
 

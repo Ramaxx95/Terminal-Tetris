@@ -17,24 +17,21 @@ uint8_t Input::getInput() {
 
     switch (this->character_input) {
         case 'a':
-            // mvprintw(1, 1, "LEFT ");
             action = MOVE_LEFT;
             break;
         case 'd':
-            // mvprintw(1, 1, "RIGHT ");
             action = MOVE_RIGHT;
             break;
         case 's':
-            // mvprintw(1, 1, "DOWN ");
             action = MOVE_DOWN;
             break;
         case ' ':
-            // mvprintw(1, 1, "ROTATE ");
             action = ROTATE;
             break;
         case 'q':
             break;
         default:
+            action = NO_INPUT;
             break;
     }
 

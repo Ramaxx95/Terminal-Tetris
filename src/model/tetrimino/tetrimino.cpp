@@ -9,7 +9,7 @@ int Tetrimino::rotate(){
     return 0;
 }
 
-bool Tetrimino::isAnyBlockColliding(int x_thres, int y_thres){
+bool Tetrimino::isAnyBlockCollidingBottom(int x_thres, int y_thres){
 
     int pos_x, pos_y = 0;
     for(size_t i = 0; i < this->blocks.size(); i++){
@@ -24,6 +24,57 @@ bool Tetrimino::isAnyBlockColliding(int x_thres, int y_thres){
         }
     }
     return false;
+}
+
+int Tetrimino::getLeftMostBlockPosition(){
+
+    int pos_x = 0, pos_y = 0, left_most_pos = 0;
+    this->blocks[0].getPosition(pos_x, pos_y);
+    left_most_pos = pos_x;
+
+    for(size_t i = 0; i < this->blocks.size(); i++){
+            
+        this->blocks[i].getPosition(pos_x, pos_y);
+        if(pos_x < left_most_pos){
+            left_most_pos = pos_x;
+        }
+    }
+
+    return left_most_pos;
+}
+
+int Tetrimino::getBlockPositionsThatMatch(int x, std::vector<int>& x_blocks, std::vector<int>& y_blocks){
+
+    int pos_x = 0, pos_y = 0;
+
+    for(size_t i = 0; i < this->blocks.size(); i++){
+            
+        this->blocks[i].getPosition(pos_x, pos_y);
+
+        if(pos_x == x){
+            x_blocks.push_back(pos_x);
+            y_blocks.push_back(pos_y);
+        }
+    }
+
+    return 0;
+}
+
+int Tetrimino::getRightMostBlockPosition(){
+
+    int pos_x = 0, pos_y = 0, right_most_pos = 0;
+    this->blocks[0].getPosition(pos_x, pos_y);
+    right_most_pos = pos_x;
+
+    for(size_t i = 0; i < this->blocks.size(); i++){
+            
+        this->blocks[i].getPosition(pos_x, pos_y);
+        if(pos_x > right_most_pos){
+            right_most_pos = pos_x;
+        }
+    }
+
+    return right_most_pos;
 }
 
 int Tetrimino::changePosition(int x, int y){
