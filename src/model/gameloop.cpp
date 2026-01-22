@@ -2,13 +2,11 @@
 #include "../controller/input.h"
 #include "../view/gameWindow.h"
 
-GameLoop::GameLoop() : is_running(true), player(Player()), game_board(Board()) {}
+GameLoop::GameLoop() : is_running(true), player(Player()), counter(0), level(1), lines_cleared(0), game_board(Board()) {}
 
 int GameLoop::start(){
 
-    /*** DEBUG ***/
-    int counter = 0;
-    /*** DEBUG ***/
+    int curr_level_counter = BASE_LEVEL_COUNTER;
 
     // pieza con la que arranca el jugador
     this->game_board.generateNewPiece();
@@ -30,20 +28,36 @@ int GameLoop::start(){
             mvaddch(30, 25, input_received);
         }
 
-        if(this->game_board.playerReachedTop()){
-            window.showEndGame();
-            this->is_running = false;
-            continue;
+        if(this->counter >= curr_level_counter){
+            if(this->game_board.playerReachedTop()){
+                window.showEndGame();
+                this->is_running = false;
+                continue;
+            }
+            
+            if(this->game_board.playerPieceReachedBottom() || this->game_board.playerPieceStopped()){
+                int score_achieved = this->game_board.clearLinesOfBlocks(this->level, this->lines_cleared);
+                this->player.updateScore(score_achieved);
+                if(this->lines_cleared >= 10) {
+                    this->level++;
+                    this->lines_cleared = 0;
+                    if(curr_level_counter > MAX_LEVEL_COUNTER){
+                        curr_level_counter -= 2000;
+                    }
+                    else {
+                        curr_level_counter = MAX_LEVEL_COUNTER;
+                    }
+                } // TODO: por ahora, hagamos que sube de nivel cada 10 filas borradas
+                this->game_board.generateNewPiece();
+            }
+            
+            this->game_board.update();
+            this->counter = 0;
         }
-        
-        if(this->game_board.playerPieceReachedBottom() || this->game_board.playerPieceStopped()){
-            int score_achieved = this->game_board.clearLinesOfBlocks();
-            this->player.updateScore(score_achieved);
-            this->game_board.generateNewPiece();
+        else {
+            //update movimiento del jugador
         }
-
-        this->game_board.update();
-        counter++;
+        this->counter++;
 
         std::vector<std::vector<char>> board = this->game_board.getBoard();
         window.showWindow(board);
@@ -51,8 +65,7 @@ int GameLoop::start(){
         //TODO: reemplazar el 'sleep' por el 'counter' de arriba -> una vez que el counter llega
         //      a un umbral dado por el 'level' actual, que se actualice la pantalla, score, etc.
         //      Mientras NO se haya llegado al umbral, el jugador puede mover y rotar su pieza.
-        std::this_thread::sleep_for(std::chrono::milliseconds(150));
-        // std::system("clear");
+       
     }
 
     return 0;

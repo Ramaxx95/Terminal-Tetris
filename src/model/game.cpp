@@ -14,6 +14,8 @@ int Game::start() {
                   << "2. Highscores\n"
                   << "3. Quit\n";
 
+        std::cin.clear();
+        
         int player_input;
         std::cin >> player_input;
 
