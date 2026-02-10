@@ -10,10 +10,10 @@ class Tetrimino{
       
 
     public:
-        // Posicion en el eje 'x' del bloque mas cercano al extremo izquierdo superior
+        // Posicion en el eje 'x' mas cercano al extremo izquierdo superior (no necesariamente es un bloque)
         int x;
 
-        // Posicion en el eje 'y' del bloque mas cercano al extremo izquierdo superior
+        // Posicion en el eje 'y' mas cercano al extremo izquierdo superior (no necesariamente es un bloque)
         int y;
 
         // Ancho de la pieza

@@ -39,6 +39,9 @@ class Block{
         // add_blk: puntero a bloque que se quiere añadir (no puede ser NULL)
         int addBlock(const AddFlag flag, Block* add_blk);
 
+        // Desvincula todo aquel bloque que estaba enganchado con este bloque
+        void removeBlocks();
+
         // Devuelve si el lado de abajo contiene un bloque
         bool lowerSideOccupied();
 

@@ -4,6 +4,7 @@
 #include <random>
 #include <limits>
 #include "tetrimino/oPiece.h"
+#include"tetrimino/sPiece.h"
 //#include "tetrimino/restoPiezas.h"
 
 // Fabrica para crear Tetriminos al azar

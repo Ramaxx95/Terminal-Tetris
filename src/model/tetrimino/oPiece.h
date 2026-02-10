@@ -15,7 +15,7 @@ class OPiece : public Tetrimino{
     public:
         OPiece(int pos_x, int pos_y);
 
-        virtual int rotate() override;
+        int rotate() override;
 
         virtual ~OPiece() override;
 

@@ -2,14 +2,15 @@
 
 TetriminoFactory::TetriminoFactory() : last_used(0) {
     this->tetrimino_list.push_back(OPiece(3,0));
+    this->tetrimino_list.push_back(SPiece(3,0));
 }
 
 Tetrimino TetriminoFactory::generatePiece(){
 
-    std::random_device rd; 
+    std::random_device rd;
 
     // Seed
-    std::mt19937 gen(rd()); 
+    std::mt19937 gen(rd());
 
     // Limits
     int min_val = 0;
@@ -17,9 +18,9 @@ Tetrimino TetriminoFactory::generatePiece(){
     std::uniform_int_distribution<int> distrib(min_val, max_val);
 
     int random_piece = distrib(gen);
-    // while(random_piece == this->last_used){
-    //     random_piece = distrib(gen);
-    // }
+    while(random_piece == this->last_used){
+        random_piece = distrib(gen);
+    }
     this->last_used = random_piece;
 
     return this->tetrimino_list[random_piece];

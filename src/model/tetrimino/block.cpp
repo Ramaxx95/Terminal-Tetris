@@ -46,6 +46,14 @@ int Block::addBlock(const AddFlag flag, Block* add_blk){
     return 0;
 }
 
+void Block::removeBlocks(){
+
+    this->upper_side = nullptr;
+    this->lower_side = nullptr;
+    this->right_side = nullptr;
+    this->left_side = nullptr;
+}
+
 bool Block::lowerSideOccupied(){
 
     if(this->lower_side){
