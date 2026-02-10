@@ -1,9 +1,6 @@
 #include "sPiece.h"
 
-SPiece::SPiece(int pos_x, int pos_y) : Tetrimino(pos_x, pos_y, 2, 2), 
-                                       initial_shape(1), 
-                                       curr_shape(1),
-                                       max_shapes(2) {
+SPiece::SPiece(int pos_x, int pos_y) : Tetrimino(pos_x, pos_y, 2, 3, 1, 1, 2) {
 
     // Creo cada bloque de la pieza
     this->blocks.push_back(Block(pos_x, pos_y + 1));

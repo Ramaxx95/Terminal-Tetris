@@ -23,7 +23,7 @@ class Board {
         // '1' = celda lleno
         std::vector<std::vector<char>> game_board;
         bool top_reached;
-        Tetrimino player_piece;
+        Tetrimino* player_piece;
         TetriminoFactory factory;
 
         int deleteFullRow(size_t row);

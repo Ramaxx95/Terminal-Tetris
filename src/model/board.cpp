@@ -1,6 +1,6 @@
 #include "board.h"
 
-Board::Board() : top_reached(false) {
+Board::Board() : top_reached(false), player_piece(nullptr) {
     this->game_board = {{'0','0','0','0','0','0','0','0'},
                         {'0','0','0','0','0','0','0','0'},
                         {'0','0','0','0','0','0','0','0'},
@@ -38,26 +38,26 @@ int Board::update(){
 int Board::movePiece(int interpreted_input){
 
     int x = 0, y = 0;
-    this->player_piece.getPosition(x, y);
+    this->player_piece->getPosition(x, y);
 
     if(interpreted_input != dont_move_piece){
         this->erasePlayerPiece();
         switch (interpreted_input)
         {
             case move_piece_left:
-                this->player_piece.changePosition(x - 1, y);
+                this->player_piece->changePosition(x - 1, y);
                 break;
 
             case move_piece_right:
-                this->player_piece.changePosition(x + 1, y);
+                this->player_piece->changePosition(x + 1, y);
                 break;
 
             case move_piece_down:
-                this->player_piece.changePosition(x, y + 1);
+                this->player_piece->changePosition(x, y + 1);
                 break;
             
             case move_piece_rotate:
-                this->player_piece.rotate();
+                this->player_piece->rotate();
                 break;
             
             default:
@@ -65,7 +65,7 @@ int Board::movePiece(int interpreted_input){
         }
 
         if(playerPieceIsCollisioning()){
-            this->player_piece.changePosition(x, y); // Si hubo colision -> reseteamos posicion inicial
+            this->player_piece->changePosition(x, y); // Si hubo colision -> reseteamos posicion inicial
         }
         this->printPlayerPiece();
     }
@@ -101,7 +101,7 @@ int Board::clearLinesOfBlocks(int level, int& lines_cleared_total){
 }
 
 bool Board::playerPieceReachedBottom(){
-    int piece_floor = this->player_piece.getLowestBlockPosition();
+    int piece_floor = this->player_piece->getLowestBlockPosition();
     return piece_floor >= (int) (this->game_board.size() - 1);
 }
 
@@ -116,7 +116,7 @@ bool Board::playerPieceStopped(){
                 pos_x = j;
                 pos_y = i;
 
-                if(this->player_piece.isAnyBlockCollidingBottom(pos_x, pos_y)){
+                if(this->player_piece->isAnyBlockCollidingBottom(pos_x, pos_y)){
                     if(i <= TOP){
                         this->top_reached = true;
                     }
@@ -150,11 +150,11 @@ int Board::deleteFullRow(size_t row){
 int Board::updatePlayerPiece(){
 
     int x, y;
-    this->player_piece.getPosition(x, y);
+    this->player_piece->getPosition(x, y);
 
     erasePlayerPiece();
 
-    this->player_piece.changePosition(x, y + 1);
+    this->player_piece->changePosition(x, y + 1);
 
     printPlayerPiece();
 
@@ -165,7 +165,7 @@ int Board::printPlayerPiece(){
 
     std::vector<int> x, y;
 
-    this->player_piece.getBlockPositions(x, y);
+    this->player_piece->getBlockPositions(x, y);
     size_t vector_size = x.size();
 
     for(size_t i = 0; i < vector_size; i++){
@@ -179,7 +179,7 @@ int Board::erasePlayerPiece(){
 
     std::vector<int> x, y;
 
-    this->player_piece.getBlockPositions(x, y);
+    this->player_piece->getBlockPositions(x, y);
     size_t vector_size = x.size();
 
     for(size_t i = 0; i < vector_size; i++){
@@ -210,7 +210,7 @@ int Board::dropBlocks(size_t row, size_t column){
 
 bool Board::playerPieceIsCollisioning(){
     std::vector<int> x_positions, y_positions;
-    this->player_piece.getBlockPositions(x_positions, y_positions);
+    this->player_piece->getBlockPositions(x_positions, y_positions);
     int board_width = this->game_board[0].size();
     int board_height = this->game_board.size();
 

@@ -1,11 +1,11 @@
 #include "tetriminoFactory.h"
 
 TetriminoFactory::TetriminoFactory() : last_used(0) {
-    this->tetrimino_list.push_back(OPiece(3,0));
-    this->tetrimino_list.push_back(SPiece(3,0));
+    this->tetrimino_list.push_back(new OPiece(3,0));
+    this->tetrimino_list.push_back(new SPiece(3,0));
 }
 
-Tetrimino TetriminoFactory::generatePiece(){
+Tetrimino* TetriminoFactory::generatePiece(){
 
     std::random_device rd;
 
@@ -23,5 +23,16 @@ Tetrimino TetriminoFactory::generatePiece(){
     }
     this->last_used = random_piece;
 
-    return this->tetrimino_list[random_piece];
+    Tetrimino* piece = this->tetrimino_list[random_piece];
+    piece->changePosition(3, 0);
+    piece->resetShape();
+
+    return piece;
+}
+
+TetriminoFactory::~TetriminoFactory() {
+    for (size_t i = 0; i < this->tetrimino_list.size(); i++){
+        delete this->tetrimino_list[i];
+    }
+    this->tetrimino_list.clear();
 }

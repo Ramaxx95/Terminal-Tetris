@@ -1,8 +1,15 @@
 #include "tetrimino.h"
 
-Tetrimino::Tetrimino() : x(0), y(0), width(0), height(0){}
+Tetrimino::Tetrimino() : x(0), y(0), width(0), height(0), initial_shape(1), curr_shape(1), max_shapes(1){}
 
-Tetrimino::Tetrimino(int x, int y, int w, int h) : x(x), y(y), width(w), height(h){}
+Tetrimino::Tetrimino(
+    int x,
+    int y, 
+    int w, 
+    int h, 
+    int initial_shape, 
+    int curr_shape, 
+    int max_shapes) : x(x), y(y), width(w), height(h), initial_shape(initial_shape), curr_shape(curr_shape), max_shapes(max_shapes){}
 
 int Tetrimino::rotate(){
     // Para la clase base, no hace nada
@@ -133,6 +140,11 @@ int Tetrimino::getLowestBlockPosition(){
     }
 
     return floor;
+}
+
+void Tetrimino::resetShape(){
+    this->curr_shape = this->max_shapes;
+    rotate();
 }
 
 Tetrimino::~Tetrimino(){}

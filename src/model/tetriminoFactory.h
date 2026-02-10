@@ -11,12 +11,13 @@
 class TetriminoFactory {
 
     private:
-        std::vector<Tetrimino> tetrimino_list;
+        std::vector<Tetrimino*> tetrimino_list;
         int last_used;
 
     public:
         TetriminoFactory();
-        Tetrimino generatePiece();
+        Tetrimino* generatePiece();
+        ~TetriminoFactory();
 }; 
 
 #endif //TETRIMINO_FACTORY_H

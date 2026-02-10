@@ -8,8 +8,7 @@
 // Clase abstracta de Tetriminos
 class Tetrimino{
       
-
-    public:
+    protected:
         // Posicion en el eje 'x' mas cercano al extremo izquierdo superior (no necesariamente es un bloque)
         int x;
 
@@ -22,14 +21,24 @@ class Tetrimino{
         // Alto de la pieza
         int height;
 
+        // Forma con la que empieza el tetrimino
+        int initial_shape;
+
+        // Forma actual
+        int curr_shape;
+
+        // Cantidad total de formas
+        int max_shapes;
+
         // Bloques que componen el Tetrimino
         std::vector<Block> blocks;
 
         /*** METODOS ***/
 
+    public:
         Tetrimino();
 
-        Tetrimino(int x, int y, int w, int h);
+        Tetrimino(int x, int y, int w, int h, int initial_shape, int curr_shape, int max_shapes);
 
         virtual int rotate();
 
@@ -48,6 +57,8 @@ class Tetrimino{
         int getBlockPositions(std::vector<int>& x, std::vector<int>& y);
 
         int getLowestBlockPosition();
+
+        void resetShape();
 
         virtual ~Tetrimino();
 

@@ -25,7 +25,7 @@ uint8_t Input::getInput() {
         case 's':
             action = MOVE_DOWN;
             break;
-        case 'j':
+        case ' ':
             action = ROTATE;
             break;
         case 'q':
