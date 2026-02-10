@@ -45,15 +45,11 @@ int Board::movePiece(int interpreted_input){
         switch (interpreted_input)
         {
             case move_piece_left:
-                if(!playerPieceIsTouchingLeft()){
-                    this->player_piece.changePosition(x - 1, y);
-                }
+                this->player_piece.changePosition(x - 1, y);
                 break;
 
             case move_piece_right:
-                if(!playerPieceIsTouchingRight()){
-                    this->player_piece.changePosition(x + 1, y);
-                }
+                this->player_piece.changePosition(x + 1, y);
                 break;
 
             case move_piece_down:
@@ -67,6 +63,10 @@ int Board::movePiece(int interpreted_input){
             
             default:
                 break;
+        }
+
+        if(playerPieceIsCollisioning()){
+            this->player_piece.changePosition(x, y); // Si hubo colision -> reseteamos posicion inicial
         }
         this->printPlayerPiece();
     }
@@ -135,18 +135,6 @@ bool Board::playerReachedTop(){
     return this->top_reached;
 }
 
-void Board::showBoard(){
-
-    for(size_t i = 0; i < this->game_board.size(); i++){
-        for(size_t j = 0; j < this->game_board[i].size(); j++){
-
-            std::cout << this->game_board[i][j];
-        }
-        std::cout << std::endl;
-    }
-    std::cout << std::endl;
-}
-
 std::vector<std::vector<char>> Board::getBoard() {
     return this->game_board;
 }
@@ -201,6 +189,8 @@ int Board::erasePlayerPiece(){
     return 0;
 }
 
+// TODO: se encontro un bug -> cuando hay bloques que no tienen ningun bloque inmediato abajo de
+//       ellos y se elimina una fila, esos bloques flotantes se quedan en lugar y NO bajan
 int Board::dropBlocks(size_t row, size_t column){
 
     size_t curr_row = row;
@@ -219,49 +209,24 @@ int Board::dropBlocks(size_t row, size_t column){
     return 0;
 }
 
-bool Board::playerPieceIsTouchingLeft() {
+bool Board::playerPieceIsCollisioning(){
+    std::vector<int> x_positions, y_positions;
+    this->player_piece.getBlockPositions(x_positions, y_positions);
+    int board_width = this->game_board[0].size();
+    int board_height = this->game_board.size();
 
-    std::vector<int> x, y;
-    int outmost_left_block = 0, left_limit = 0;
-    std::vector<int> x_limit, y_limit; // guardamos los limites de los bloques izquierdos
-
-    outmost_left_block = this->player_piece.getLeftMostBlockPosition();
-
-    this->player_piece.getBlockPositionsThatMatch(outmost_left_block, x_limit, y_limit);
-
-    // Choca con el limite izquierdo 
-    if(outmost_left_block == left_limit){
-        return true;
-    }
-
-    for(size_t i = 0; i < x_limit.size(); i++){
-        if(this->game_board[y_limit[i]][x_limit[i] - 1] == '1'){
+    for(size_t i = 0; i < x_positions.size(); i++){
+        if(x_positions[i] < 0 || x_positions[i] >= board_width){
+            return true;
+        }
+        else if(y_positions[i] >= board_height){
+            return true;
+        }
+        else if(this->game_board[y_positions[i]][x_positions[i]] == '1'){
             return true;
         }
     }
-    return false;
-}
 
-bool Board::playerPieceIsTouchingRight(){
-
-    std::vector<int> x, y;
-    int outmost_right_block = 0, right_limit = (int) this->game_board[0].size() - 1;
-    std::vector<int> x_limit, y_limit; // guardamos los limites de los bloques derechos
-
-    outmost_right_block = this->player_piece.getRightMostBlockPosition();
-
-    this->player_piece.getBlockPositionsThatMatch(outmost_right_block, x_limit, y_limit);
-
-    // Choca con el limite derecho 
-    if(outmost_right_block == right_limit){
-        return true;
-    }
-
-    for(size_t i = 0; i < x_limit.size(); i++){
-        if(this->game_board[y_limit[i]][x_limit[i] + 1] == '1'){
-            return true;
-        }
-    }
     return false;
 }
 

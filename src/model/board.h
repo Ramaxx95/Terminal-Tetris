@@ -30,8 +30,7 @@ class Board {
         int updatePlayerPiece();
         int printPlayerPiece();
         int erasePlayerPiece();
-        bool playerPieceIsTouchingLeft();
-        bool playerPieceIsTouchingRight();
+        bool playerPieceIsCollisioning();
 
     public:
         Board();
@@ -42,7 +41,6 @@ class Board {
         bool playerPieceReachedBottom();
         bool playerPieceStopped();
         bool playerReachedTop();
-        void showBoard();
         std::vector<std::vector<char>> getBoard();
         ~Board();
 }; 
