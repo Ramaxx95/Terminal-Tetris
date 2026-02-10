@@ -24,6 +24,7 @@ class Board {
         std::vector<std::vector<char>> game_board;
         bool top_reached;
         Tetrimino player_piece;
+        TetriminoFactory factory;
 
         int deleteFullRow(size_t row);
         int dropBlocks(size_t row, size_t column);

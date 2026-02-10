@@ -24,7 +24,7 @@ Board::Board() : top_reached(false) {
 
 int Board::generateNewPiece(){
     
-    this->player_piece = TetriminoFactory::generatePiece();
+    this->player_piece = this->factory.generatePiece();
     printPlayerPiece();
     return 0;
 }
