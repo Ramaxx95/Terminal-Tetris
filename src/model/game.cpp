@@ -9,10 +9,10 @@ int Game::start() {
     // main loop
     while (this->is_running){
         
-        std::cout << "Please select an option:\n"
-                  << "1. Play\n"
+        std::cout << "1. Play\n"
                   << "2. Highscores\n"
-                  << "3. Quit\n";
+                  << "3. Quit\n\n"
+                  << "Please select an option (type number + Enter): ";
 
         std::cin.clear();
         
