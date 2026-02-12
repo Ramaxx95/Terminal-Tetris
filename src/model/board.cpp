@@ -188,8 +188,6 @@ int Board::erasePlayerPiece(){
     return 0;
 }
 
-// TODO: se encontro un bug -> cuando hay bloques que no tienen ningun bloque inmediato abajo de
-//       ellos y se elimina una fila, esos bloques flotantes se quedan en lugar y NO bajan
 int Board::dropBlocks(size_t row, size_t column){
 
     size_t curr_row = row;
@@ -198,11 +196,8 @@ int Board::dropBlocks(size_t row, size_t column){
         if(this->game_board[curr_row - 1][column] == '1'){
             this->game_board[curr_row][column] = '1';
             this->game_board[curr_row - 1][column] = '0';
-            curr_row--;
         }
-        else{
-            break;
-        }
+        curr_row--;
     }
     
     return 0;
