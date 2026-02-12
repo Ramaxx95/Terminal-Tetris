@@ -13,7 +13,7 @@ class GameWindow {
 
     public:
         GameWindow(Player& player);
-        void showWindow(std::vector<std::vector<char>>& game_board);
+        void showWindow(std::vector<std::vector<char>>& game_board, int game_level);
         void showEndGame();
         ~GameWindow();
 };

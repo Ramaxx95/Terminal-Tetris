@@ -2,11 +2,12 @@
 
 GameWindow::GameWindow(Player& player) : player(player) {}
 
-void GameWindow::showWindow(std::vector<std::vector<char>>& game_board) {
+void GameWindow::showWindow(std::vector<std::vector<char>>& game_board, int game_level) {
 
     // Mostramos la info del jugador
     mvprintw(1, 22, "Player: %s", this->player.getName().c_str());
     mvprintw(2, 22, "Score:  %d", this->player.getScore());
+    mvprintw(3, 22, "Level:  %d", game_level);
 
     size_t row_size = game_board.size();
     size_t column_size = game_board[0].size();

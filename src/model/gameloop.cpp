@@ -21,13 +21,11 @@ int GameLoop::start(){
 
     // Inicializo la pantalla de juego
     GameWindow window = GameWindow(this->player);
+    std::vector<std::vector<char>> board; 
 
     while (this->is_running) {
 
         input_received = player_input.getInput();
-        if(input_received){
-            mvprintw(30, 0, "[DEBUG] Input recibido: %c", input_received);
-        }
 
         if(this->counter >= curr_level_counter){
             
@@ -37,6 +35,8 @@ int GameLoop::start(){
                 continue;
             }
             
+            // TODO: agregar que el counter debe haber llegado al umbral para poder entrar
+            //       a este bloque. O fijarse porque cambia tan rapido luego 
             if(this->game_board.playerPieceReachedBottom() || this->game_board.playerPieceStopped()){
                 int score_achieved = this->game_board.clearLinesOfBlocks(this->level, this->lines_cleared);
                 this->player.updateScore(score_achieved);
@@ -61,8 +61,8 @@ int GameLoop::start(){
         }
         this->counter++;
 
-        std::vector<std::vector<char>> board = this->game_board.getBoard();
-        window.showWindow(board);
+        board = this->game_board.getBoard();
+        window.showWindow(board, this->level);
        
     }
 
