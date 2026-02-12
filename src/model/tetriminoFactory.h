@@ -7,6 +7,7 @@
 #include "tetrimino/sPiece.h"
 #include "tetrimino/nPiece.h"
 #include "tetrimino/iPiece.h"
+#include "tetrimino/tPiece.h"
 //#include "tetrimino/restoPiezas.h"
 
 // TODO: si al agregar mas piezas ralentiza mucho el juego, capaz convenga usar esta factory

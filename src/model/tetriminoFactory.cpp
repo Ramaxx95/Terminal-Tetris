@@ -5,6 +5,7 @@ TetriminoFactory::TetriminoFactory() : last_used(0) {
     this->tetrimino_list.push_back(new SPiece(3,0));
     this->tetrimino_list.push_back(new NPiece(3,0));
     this->tetrimino_list.push_back(new IPiece(3,0));
+    this->tetrimino_list.push_back(new TPiece(3,0));
 }
 
 Tetrimino* TetriminoFactory::generatePiece(){

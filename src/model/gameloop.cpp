@@ -63,10 +63,6 @@ int GameLoop::start(){
 
         std::vector<std::vector<char>> board = this->game_board.getBoard();
         window.showWindow(board);
-        
-        //TODO: reemplazar el 'sleep' por el 'counter' de arriba -> una vez que el counter llega
-        //      a un umbral dado por el 'level' actual, que se actualice la pantalla, score, etc.
-        //      Mientras NO se haya llegado al umbral, el jugador puede mover y rotar su pieza.
        
     }
 
