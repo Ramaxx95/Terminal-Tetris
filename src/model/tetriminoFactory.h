@@ -6,6 +6,7 @@
 #include "tetrimino/oPiece.h"
 #include "tetrimino/sPiece.h"
 #include "tetrimino/nPiece.h"
+#include "tetrimino/iPiece.h"
 //#include "tetrimino/restoPiezas.h"
 
 // TODO: si al agregar mas piezas ralentiza mucho el juego, capaz convenga usar esta factory
@@ -16,7 +17,8 @@ class TetriminoFactory {
 
     private:
         std::vector<Tetrimino*> tetrimino_list;
-        int last_used;
+        int last_used; // TODO: por ahi conviene tener mas de una pieza guardada -> para que no
+                       //       repita mucho (tal vez con 3 sea suficiente)
 
     public:
         TetriminoFactory();
