@@ -3,6 +3,8 @@
 
 #include <random>
 #include <limits>
+#include <algorithm>
+#include <list>
 #include "tetrimino/oPiece.h"
 #include "tetrimino/sPiece.h"
 #include "tetrimino/nPiece.h"
@@ -11,16 +13,14 @@
 #include "tetrimino/lPiece.h"
 #include "tetrimino/pPiece.h"
 
-// TODO: si al agregar mas piezas ralentiza mucho el juego, capaz convenga usar esta factory
-//       en un thread aparte
+#define MAX_LAST_USED 4
 
 // Fabrica para crear Tetriminos al azar
 class TetriminoFactory {
 
     private:
         std::vector<Tetrimino*> tetrimino_list;
-        int last_used; // TODO: por ahi conviene tener mas de una pieza guardada -> para que no
-                       //       repita mucho (tal vez con 3 sea suficiente)
+        std::list<int> last_used;
 
     public:
         TetriminoFactory();

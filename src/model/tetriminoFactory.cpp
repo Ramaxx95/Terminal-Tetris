@@ -23,10 +23,20 @@ Tetrimino* TetriminoFactory::generatePiece(){
     std::uniform_int_distribution<int> distrib(min_val, max_val);
 
     int random_piece = distrib(gen);
-    while(random_piece == this->last_used){
+    int n_random_piece_repeated = std::count(this->last_used.begin(), this->last_used.end(), random_piece);
+    
+    while(n_random_piece_repeated > 0){
         random_piece = distrib(gen);
+        n_random_piece_repeated = std::count(this->last_used.begin(), this->last_used.end(), random_piece);
     }
-    this->last_used = random_piece;
+
+    if(this->last_used.size() == MAX_LAST_USED){
+        this->last_used.pop_front();
+        this->last_used.push_back(random_piece);
+    }
+    else{
+        this->last_used.push_back(random_piece);
+    }
 
     Tetrimino* piece = this->tetrimino_list[random_piece];
     piece->changePosition(3, 0);

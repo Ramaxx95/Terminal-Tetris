@@ -35,8 +35,7 @@ int GameLoop::start(){
                 continue;
             }
             
-            // TODO: agregar que el counter debe haber llegado al umbral para poder entrar
-            //       a este bloque. O fijarse porque cambia tan rapido luego 
+            // TODO: fijarse porque cambia tan rapido luego 
             if(this->game_board.playerPieceReachedBottom() || this->game_board.playerPieceStopped()){
                 int score_achieved = this->game_board.clearLinesOfBlocks(this->level, this->lines_cleared);
                 this->player.updateScore(score_achieved);
