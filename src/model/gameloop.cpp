@@ -65,6 +65,8 @@ int GameLoop::start(){
        
     }
 
+    // TODO: ver tema de "stack smashing detected" -> hay alguna fuga de recursos
+
     return 0;
 }
 

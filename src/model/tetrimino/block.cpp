@@ -76,6 +76,38 @@ int Block::changePosition(int x, int y){
     return 0;
 }
 
+bool Block::hasAnotherBlockIn(AddFlag next_position){
+    Block* next_block = nullptr; 
+    
+    switch (next_position)
+    {
+        case UPPER_SIDE:
+            next_block = this->upper_side;
+            break;
+
+        case LOWER_SIDE:
+            next_block = this->lower_side;
+            break;
+
+        case RIGHT_SIDE:
+            next_block = this->right_side;
+            break;
+
+        case LEFT_SIDE:
+            next_block = this->left_side;
+            break;
+    
+        default:
+            break;
+    }
+
+    if(next_block == nullptr){
+        return false;
+    }
+
+    return true;
+}
+
 Block::~Block(){
     this->upper_side = nullptr;
     this->lower_side = nullptr;

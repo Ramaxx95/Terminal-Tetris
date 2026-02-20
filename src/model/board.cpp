@@ -38,6 +38,7 @@ int Board::update(){
 int Board::movePiece(int interpreted_input){
 
     int x = 0, y = 0;
+    int initial_shape = this->player_piece->getShape();
     this->player_piece->getPosition(x, y);
 
     if(interpreted_input != dont_move_piece){
@@ -58,6 +59,13 @@ int Board::movePiece(int interpreted_input){
             
             case move_piece_rotate:
                 this->player_piece->rotate();
+                if(playerPieceIsCollisioning()){
+                    correctPlayerPieceCollision();
+                    if(playerPieceIsCollisioning()){
+                        this->player_piece->resetTo(initial_shape);
+                        this->player_piece->changePosition(x, y);
+                    }
+                }
                 break;
             
             default:
@@ -222,6 +230,31 @@ bool Board::playerPieceIsCollisioning(){
     }
 
     return false;
+}
+
+void Board::correctPlayerPieceCollision(){
+    std::vector<Block> piece_blocks = this->player_piece->getBlocks();
+    int block_x = 0, block_y = 0, piece_x = 0, piece_y = 0;
+    size_t board_width = this->game_board[0].size();
+
+    this->player_piece->getPosition(piece_x, piece_y);
+
+    for(size_t i = 0; i < piece_blocks.size(); i++){
+        piece_blocks[i].getPosition(block_x, block_y);
+
+        if(block_x >= (int) board_width){
+            this->player_piece->changePosition(piece_x - 1, piece_y);
+        }
+        else if(this->game_board[block_y][block_x] == '1'){
+            if(piece_blocks[i].hasAnotherBlockIn(LEFT_SIDE)){
+                this->player_piece->changePosition(piece_x - 1, piece_y);
+            }
+            else if(piece_blocks[i].hasAnotherBlockIn(RIGHT_SIDE)){
+                this->player_piece->changePosition(piece_x + 1, piece_y);
+            }
+            break;
+        }
+    }
 }
 
 Board::~Board() {}

@@ -51,6 +51,10 @@ class Block{
 
         // Cambiar la posicion del bloque
         int changePosition(int x, int y);
+
+        // Devuelve si hay un bloque contiguo en 'nest_position'
+        bool hasAnotherBlockIn(AddFlag next_position);
+        
         ~Block();
 
 };

@@ -1,6 +1,6 @@
 #include "nPiece.h"
 
-NPiece::NPiece(int pos_x, int pos_y) : Tetrimino(pos_x, pos_y, 2, 3, 1, 1, 2) {
+NPiece::NPiece(int pos_x, int pos_y) : Tetrimino(pos_x, pos_y, 3, 2, 1, 1, 2) {
 
     // Creo cada bloque de la pieza
     this->blocks.push_back(Block(pos_x, pos_y));
@@ -41,6 +41,9 @@ int NPiece::rotate(){
         this->blocks[2].addBlock(UPPER_SIDE, &this->blocks[1]);
         this->blocks[2].addBlock(RIGHT_SIDE, &this->blocks[3]);
         this->blocks[3].addBlock(LEFT_SIDE, &this->blocks[2]);
+
+        this->width = 3;
+        this->height = 2;
     }
     else if (this->curr_shape == 2){
         // Notar como ahora el bloque "3" se encuentra en el extremo superior izquierdo de esta pieza
@@ -55,6 +58,9 @@ int NPiece::rotate(){
         this->blocks[2].addBlock(RIGHT_SIDE, &this->blocks[1]);
         this->blocks[2].addBlock(LOWER_SIDE, &this->blocks[3]);
         this->blocks[3].addBlock(UPPER_SIDE, &this->blocks[2]);
+
+        this->width = 2;
+        this->height = 3;
     }
 
     return 0;

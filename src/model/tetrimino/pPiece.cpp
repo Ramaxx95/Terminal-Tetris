@@ -40,6 +40,9 @@ int PPiece::rotate(){
         this->blocks[2].addBlock(LOWER_SIDE, &this->blocks[1]);
         this->blocks[2].addBlock(UPPER_SIDE, &this->blocks[1]);
         this->blocks[3].addBlock(LOWER_SIDE, &this->blocks[1]);
+
+        this->width = 2;
+        this->height = 3;
     }
     else if (this->curr_shape == 2){
         this->blocks[0].changePosition(this->x + 2, this->y + 1);
@@ -53,6 +56,9 @@ int PPiece::rotate(){
         this->blocks[2].addBlock(RIGHT_SIDE, &this->blocks[1]);
         this->blocks[2].addBlock(LEFT_SIDE, &this->blocks[1]);
         this->blocks[3].addBlock(RIGHT_SIDE, &this->blocks[1]);
+
+        this->width = 3;
+        this->height = 2;
     }
     else if (this->curr_shape == 3){
         this->blocks[0].changePosition(this->x + 1, this->y);
@@ -66,6 +72,9 @@ int PPiece::rotate(){
         this->blocks[2].addBlock(UPPER_SIDE, &this->blocks[1]);
         this->blocks[2].addBlock(LOWER_SIDE, &this->blocks[1]);
         this->blocks[3].addBlock(UPPER_SIDE, &this->blocks[1]);
+
+        this->width = 2;
+        this->height = 3;
     }
     else if (this->curr_shape == 4){
         this->blocks[0].changePosition(this->x, this->y);
@@ -79,6 +88,9 @@ int PPiece::rotate(){
         this->blocks[2].addBlock(LEFT_SIDE, &this->blocks[1]);
         this->blocks[2].addBlock(RIGHT_SIDE, &this->blocks[1]);
         this->blocks[3].addBlock(LEFT_SIDE, &this->blocks[1]);
+
+        this->width = 3;
+        this->height = 2;
     }
 
     return 0;

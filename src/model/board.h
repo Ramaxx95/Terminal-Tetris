@@ -33,6 +33,9 @@ class Board {
         int erasePlayerPiece();
         bool playerPieceIsCollisioning();
 
+        /*Se encarga de mover la pieza para que encaje luego de rotarla*/
+        void correctPlayerPieceCollision();
+
     public:
         Board();
         int generateNewPiece();

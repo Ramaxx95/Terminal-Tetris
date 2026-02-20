@@ -41,6 +41,9 @@ int IPiece::rotate(){
         this->blocks[2].addBlock(UPPER_SIDE, &this->blocks[1]);
         this->blocks[2].addBlock(LOWER_SIDE, &this->blocks[3]);
         this->blocks[3].addBlock(UPPER_SIDE, &this->blocks[2]);
+
+        this->width = 1;
+        this->height = 4;
     }
     else if (this->curr_shape == 2){
         // Notar como ahora el bloque "3" se encuentra en el extremo superior izquierdo de esta pieza
@@ -55,6 +58,9 @@ int IPiece::rotate(){
         this->blocks[2].addBlock(LEFT_SIDE, &this->blocks[1]);
         this->blocks[2].addBlock(RIGHT_SIDE, &this->blocks[3]);
         this->blocks[3].addBlock(LEFT_SIDE, &this->blocks[2]);
+
+        this->width = 4;
+        this->height = 1;
     }
 
     return 0;

@@ -40,7 +40,7 @@ Tetrimino* TetriminoFactory::generatePiece(){
 
     Tetrimino* piece = this->tetrimino_list[random_piece];
     piece->changePosition(3, 0);
-    piece->resetShape();
+    piece->resetTo(1);
 
     return piece;
 }

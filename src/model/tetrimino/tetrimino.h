@@ -58,7 +58,15 @@ class Tetrimino{
 
         int getLowestBlockPosition();
 
-        void resetShape();
+        void resetTo(int shape);
+        
+        int getShape();
+
+        int getWidth();
+
+        int getHeight();
+
+        std::vector<Block> getBlocks();
 
         virtual ~Tetrimino();
 

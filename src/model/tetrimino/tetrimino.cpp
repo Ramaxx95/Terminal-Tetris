@@ -142,9 +142,28 @@ int Tetrimino::getLowestBlockPosition(){
     return floor;
 }
 
-void Tetrimino::resetShape(){
-    this->curr_shape = this->max_shapes;
+void Tetrimino::resetTo(int shape){
+    this->curr_shape = shape - 1;
+    if(this->curr_shape <= 0){
+        this->curr_shape = this->max_shapes;
+    }
     rotate();
+}
+
+int Tetrimino::getShape(){
+    return this->curr_shape;
+}
+
+int Tetrimino::getWidth(){
+    return this->width;
+}
+
+int Tetrimino::getHeight(){
+    return this->height;
+}
+
+std::vector<Block> Tetrimino::getBlocks(){
+    return this->blocks;
 }
 
 Tetrimino::~Tetrimino(){}
