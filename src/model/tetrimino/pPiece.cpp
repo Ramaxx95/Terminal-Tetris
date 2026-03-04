@@ -3,10 +3,10 @@
 PPiece::PPiece(int pos_x, int pos_y) : Tetrimino(pos_x, pos_y, 2, 3, 1, 1, 4) {
 
     // Creo cada bloque de la pieza
-    this->blocks.push_back(Block(pos_x, pos_y + 2));
-    this->blocks.push_back(Block(pos_x + 1, pos_y + 2));
-    this->blocks.push_back(Block(pos_x + 1, pos_y + 1));
-    this->blocks.push_back(Block(pos_x + 1, pos_y));
+    this->blocks.emplace_back(Block(pos_x, pos_y + 2));
+    this->blocks.emplace_back(Block(pos_x + 1, pos_y + 2));
+    this->blocks.emplace_back(Block(pos_x + 1, pos_y + 1));
+    this->blocks.emplace_back(Block(pos_x + 1, pos_y));
 
     // Linkeo cada bloque
     this->blocks[0].addBlock(RIGHT_SIDE, &this->blocks[1]);

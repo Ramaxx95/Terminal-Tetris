@@ -8,7 +8,7 @@
 #include "tetrimino/tetrimino.h"
 #include "tetriminoFactory.h"
 
-#define TOP 3 // fila tope que el jugador puede ver
+const int top_playable_board = 4; // fila tope que el jugador puede ver
 const int move_piece_left =  -1;
 const int dont_move_piece =  0;
 const int move_piece_right =  1;

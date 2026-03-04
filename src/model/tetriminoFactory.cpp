@@ -1,13 +1,13 @@
 #include "tetriminoFactory.h"
 
 TetriminoFactory::TetriminoFactory() : last_used(0) {
-    this->tetrimino_list.push_back(new OPiece(3,0));
-    this->tetrimino_list.push_back(new SPiece(3,0));
-    this->tetrimino_list.push_back(new NPiece(3,0));
+    this->tetrimino_list.push_back(new OPiece(3,2));
+    this->tetrimino_list.push_back(new SPiece(3,2));
+    this->tetrimino_list.push_back(new NPiece(3,2));
     this->tetrimino_list.push_back(new IPiece(3,0));
-    this->tetrimino_list.push_back(new TPiece(3,0));
-    this->tetrimino_list.push_back(new LPiece(3,0));
-    this->tetrimino_list.push_back(new PPiece(3,0));
+    this->tetrimino_list.push_back(new TPiece(3,2));
+    this->tetrimino_list.push_back(new LPiece(3,1));
+    this->tetrimino_list.push_back(new PPiece(3,1));
 }
 
 Tetrimino* TetriminoFactory::generatePiece(){
@@ -39,7 +39,7 @@ Tetrimino* TetriminoFactory::generatePiece(){
     }
 
     Tetrimino* piece = this->tetrimino_list[random_piece];
-    piece->changePosition(3, 0);
+    piece->resetPosition();
     piece->resetTo(1);
 
     return piece;

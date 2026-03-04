@@ -35,7 +35,8 @@ int GameLoop::start(){
                 continue;
             }
             
-            // TODO: fijarse porque cambia tan rapido luego 
+            // TODO: por alguna razon, si no se limpio ninguna linea y el jugador ya llego
+            //       al tope de la tabla, el juego sigue -> arreglar 
             if(this->game_board.playerPieceReachedBottom() || this->game_board.playerPieceStopped()){
                 int score_achieved = this->game_board.clearLinesOfBlocks(this->level, this->lines_cleared);
                 this->player.updateScore(score_achieved);

@@ -15,6 +15,12 @@ class Tetrimino{
         // Posicion en el eje 'y' mas cercano al extremo izquierdo superior (no necesariamente es un bloque)
         int y;
 
+        // Posicion inicial en eje 'x'
+        int initial_x;
+
+        // Posicion inicial en eje 'y'
+        int initial_y;
+
         // Ancho de la pieza
         int width;
 
@@ -57,6 +63,8 @@ class Tetrimino{
         int getBlockPositions(std::vector<int>& x, std::vector<int>& y);
 
         int getLowestBlockPosition();
+
+        void resetPosition();
 
         void resetTo(int shape);
         

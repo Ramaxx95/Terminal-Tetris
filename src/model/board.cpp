@@ -19,6 +19,10 @@ Board::Board() : top_reached(false), player_piece(nullptr) {
                         {'0','0','0','0','0','0','0','0'},
                         {'0','0','0','0','0','0','0','0'},
                         {'0','0','0','0','0','0','0','0'},
+                        {'0','0','0','0','0','0','0','0'},
+                        {'0','0','0','0','0','0','0','0'},
+                        {'0','0','0','0','0','0','0','0'},
+                        {'0','0','0','0','0','0','0','0'},
                         {'0','0','0','0','0','0','0','0'}};
 }
 
@@ -125,7 +129,7 @@ bool Board::playerPieceStopped(){
                 pos_y = i;
 
                 if(this->player_piece->isAnyBlockCollidingBottom(pos_x, pos_y)){
-                    if(i <= TOP){
+                    if(i <= top_playable_board){
                         this->top_reached = true;
                     }
                     return true;
@@ -200,7 +204,7 @@ int Board::dropBlocks(size_t row, size_t column){
 
     size_t curr_row = row;
 
-    while (curr_row > TOP){
+    while (curr_row > top_playable_board){
         if(this->game_board[curr_row - 1][column] == '1'){
             this->game_board[curr_row][column] = '1';
             this->game_board[curr_row - 1][column] = '0';

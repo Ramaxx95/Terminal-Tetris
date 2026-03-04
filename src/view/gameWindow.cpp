@@ -12,25 +12,25 @@ void GameWindow::showWindow(std::vector<std::vector<char>>& game_board, int game
     size_t row_size = game_board.size();
     size_t column_size = game_board[0].size();
     
-    // Mostramos la tabla del juego
-    for(size_t i = row_size - 1; i > 0; i--){
+    // Mostramos la tabla del juego (omitimos las 4 primeras filas)
+    for(size_t i = row_size - 1; i > 3; i--){
 
-        mvprintw(i, 0, "<|");
+        mvprintw(i - 4, 0, "<|");
 
         for(size_t j = 1; j < column_size + 1; j++){
 
             if(game_board[i][j - 1] == '1'){
-                mvprintw(i, j*2, "[]");
+                mvprintw(i - 4, j*2, "[]");
             }
             else {
-                mvprintw(i, j*2, "..");
+                mvprintw(i - 4, j*2, "..");
             }
         }
 
-        mvprintw(i, 18, "|>");
+        mvprintw(i - 4, 18, "|>");
 
     }
-    mvprintw(row_size, 0, "====================");
+    mvprintw(row_size - 4, 0, "====================");
 }
 
 void GameWindow::showEndGame(){
