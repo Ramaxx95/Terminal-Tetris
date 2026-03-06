@@ -46,6 +46,7 @@ class Board {
         bool playerPieceStopped();
         bool playerReachedTop();
         std::vector<std::vector<char>> getBoard();
+        void getPlayerPosition(int &x, int &y, int &height);
         ~Board();
 }; 
 

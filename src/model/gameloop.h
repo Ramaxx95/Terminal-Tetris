@@ -24,8 +24,6 @@ class GameLoop {
         int lines_cleared;
         Board game_board;
 
-        void determineEndGame();
-
     public:
         GameLoop();
         int start();

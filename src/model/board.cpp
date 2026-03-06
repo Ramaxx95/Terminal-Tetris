@@ -93,7 +93,7 @@ int Board::clearLinesOfBlocks(int level, int& lines_cleared_total){
     size_t row_size = this->game_board.size();
     size_t column_size = this->game_board[0].size();
      
-    for(size_t i = row_size - 1; i > 0; i--){
+    for(size_t i = row_size - 1; i > top_playable_board; i--){
         for(size_t j = 0; j < column_size; j++){
 
             if(this->game_board[i][j] != '1'){
@@ -129,7 +129,8 @@ bool Board::playerPieceStopped(){
                 pos_y = i;
 
                 if(this->player_piece->isAnyBlockCollidingBottom(pos_x, pos_y)){
-                    if(i <= top_playable_board){
+                    this->player_piece->getPosition(pos_x, pos_y);
+                    if(pos_y <= top_playable_board){
                         this->top_reached = true;
                     }
                     return true;
@@ -148,6 +149,11 @@ bool Board::playerReachedTop(){
 
 std::vector<std::vector<char>> Board::getBoard() {
     return this->game_board;
+}
+
+void Board::getPlayerPosition(int &x, int &y, int &height){
+    this->player_piece->getPosition(x, y);
+    height = this->player_piece->getHeight();
 }
 
 int Board::deleteFullRow(size_t row){

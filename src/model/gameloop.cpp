@@ -35,8 +35,6 @@ int GameLoop::start(){
                 continue;
             }
             
-            // TODO: por alguna razon, si no se limpio ninguna linea y el jugador ya llego
-            //       al tope de la tabla, el juego sigue -> arreglar 
             if(this->game_board.playerPieceReachedBottom() || this->game_board.playerPieceStopped()){
                 int score_achieved = this->game_board.clearLinesOfBlocks(this->level, this->lines_cleared);
                 this->player.updateScore(score_achieved);
@@ -49,7 +47,7 @@ int GameLoop::start(){
                     else {
                         curr_level_counter = MAX_LEVEL_COUNTER;
                     }
-                } // TODO: por ahora, hagamos que sube de nivel cada 10 filas borradas
+                }
                 this->game_board.generateNewPiece();
             }
             
@@ -61,6 +59,13 @@ int GameLoop::start(){
         }
         this->counter++;
 
+        // DEBUG
+        int x = 0, y = 0, height = 0;
+        this->game_board.getPlayerPosition(x, y, height); 
+        mvprintw(5, 22, "Pieza actual: (%d, %d) ", x, y); 
+        mvprintw(6, 22, "Posicion mas baja: %d ", height + y);
+        // END DEBUG
+
         board = this->game_board.getBoard();
         window.showWindow(board, this->level);
        
@@ -69,13 +74,6 @@ int GameLoop::start(){
     // TODO: ver tema de "stack smashing detected" -> hay alguna fuga de recursos
 
     return 0;
-}
-
-void GameLoop::determineEndGame(){
-
-    // if(this->game_board.noSpaceLeft()){
-    //     this->is_running = false;
-    // }
 }
 
 GameLoop::~GameLoop() {}
