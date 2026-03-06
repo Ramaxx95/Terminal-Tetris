@@ -41,5 +41,6 @@ uint8_t Input::getInput() {
 }
 
 Input::~Input(){
+    flushinp();
     endwin();
 }

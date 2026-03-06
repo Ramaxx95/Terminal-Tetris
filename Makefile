@@ -8,7 +8,7 @@ target = tetris
 ###########################
 
 # Opciones para el compilador C/C++ para tratamiento de errores y warnings.
-CFLAGS += -Wall -Werror -pedantic -pedantic-errors
+CFLAGS += -Wall -Werror -pedantic -pedantic-errors -fstack-protector
 
 # -O3: optimiza el binario, posiblemente revelando bugs sutiles
 # -O0: no optimiza el binario pero lo hace debuggeable

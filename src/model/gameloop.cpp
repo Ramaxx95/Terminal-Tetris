@@ -57,6 +57,9 @@ int GameLoop::start(){
         else {
             game_board.movePiece(inputManager.interpretInput(input_received));
         }
+
+        // TODO: el programa usa mucho la CPU -> ver de usar 'sleep' o
+        //       threads para aliviar ese sobreuso
         this->counter++;
 
         // DEBUG
@@ -70,8 +73,6 @@ int GameLoop::start(){
         window.showWindow(board, this->level);
        
     }
-
-    // TODO: ver tema de "stack smashing detected" -> hay alguna fuga de recursos
 
     return 0;
 }
