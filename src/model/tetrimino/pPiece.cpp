@@ -13,8 +13,8 @@ PPiece::PPiece(int pos_x, int pos_y) : Tetrimino(pos_x, pos_y, 2, 3, 1, 1, 4) {
     this->blocks[1].addBlock(LEFT_SIDE, &this->blocks[0]);
     this->blocks[1].addBlock(UPPER_SIDE, &this->blocks[2]);
     this->blocks[2].addBlock(LOWER_SIDE, &this->blocks[1]);
-    this->blocks[2].addBlock(UPPER_SIDE, &this->blocks[1]);
-    this->blocks[3].addBlock(LOWER_SIDE, &this->blocks[1]);
+    this->blocks[2].addBlock(UPPER_SIDE, &this->blocks[3]);
+    this->blocks[3].addBlock(LOWER_SIDE, &this->blocks[2]);
 }
 
 int PPiece::rotate(){
@@ -38,8 +38,8 @@ int PPiece::rotate(){
         this->blocks[1].addBlock(LEFT_SIDE, &this->blocks[0]);
         this->blocks[1].addBlock(UPPER_SIDE, &this->blocks[2]);
         this->blocks[2].addBlock(LOWER_SIDE, &this->blocks[1]);
-        this->blocks[2].addBlock(UPPER_SIDE, &this->blocks[1]);
-        this->blocks[3].addBlock(LOWER_SIDE, &this->blocks[1]);
+        this->blocks[2].addBlock(UPPER_SIDE, &this->blocks[3]);
+        this->blocks[3].addBlock(LOWER_SIDE, &this->blocks[2]);
 
         this->width = 2;
         this->height = 3;
@@ -54,8 +54,8 @@ int PPiece::rotate(){
         this->blocks[1].addBlock(LOWER_SIDE, &this->blocks[0]);
         this->blocks[1].addBlock(LEFT_SIDE, &this->blocks[2]);
         this->blocks[2].addBlock(RIGHT_SIDE, &this->blocks[1]);
-        this->blocks[2].addBlock(LEFT_SIDE, &this->blocks[1]);
-        this->blocks[3].addBlock(RIGHT_SIDE, &this->blocks[1]);
+        this->blocks[2].addBlock(LEFT_SIDE, &this->blocks[3]);
+        this->blocks[3].addBlock(RIGHT_SIDE, &this->blocks[2]);
 
         this->width = 3;
         this->height = 2;
@@ -70,8 +70,8 @@ int PPiece::rotate(){
         this->blocks[1].addBlock(RIGHT_SIDE, &this->blocks[0]);
         this->blocks[1].addBlock(LOWER_SIDE, &this->blocks[2]);
         this->blocks[2].addBlock(UPPER_SIDE, &this->blocks[1]);
-        this->blocks[2].addBlock(LOWER_SIDE, &this->blocks[1]);
-        this->blocks[3].addBlock(UPPER_SIDE, &this->blocks[1]);
+        this->blocks[2].addBlock(LOWER_SIDE, &this->blocks[3]);
+        this->blocks[3].addBlock(UPPER_SIDE, &this->blocks[2]);
 
         this->width = 2;
         this->height = 3;
@@ -86,8 +86,8 @@ int PPiece::rotate(){
         this->blocks[1].addBlock(UPPER_SIDE, &this->blocks[0]);
         this->blocks[1].addBlock(RIGHT_SIDE, &this->blocks[2]);
         this->blocks[2].addBlock(LEFT_SIDE, &this->blocks[1]);
-        this->blocks[2].addBlock(RIGHT_SIDE, &this->blocks[1]);
-        this->blocks[3].addBlock(LEFT_SIDE, &this->blocks[1]);
+        this->blocks[2].addBlock(RIGHT_SIDE, &this->blocks[3]);
+        this->blocks[3].addBlock(LEFT_SIDE, &this->blocks[2]);
 
         this->width = 3;
         this->height = 2;
