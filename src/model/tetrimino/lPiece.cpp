@@ -1,7 +1,5 @@
 #include "lPiece.h"
 
-// TODO: hay problemas de colision con esta pieza cuando esta levantada
-
 LPiece::LPiece(int pos_x, int pos_y) : Tetrimino(pos_x, pos_y, 2, 3, 1, 1, 4) {
 
     // Creo cada bloque de la pieza

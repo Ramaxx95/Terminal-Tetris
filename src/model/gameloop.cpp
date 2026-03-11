@@ -42,7 +42,7 @@ int GameLoop::start(){
                     this->level++;
                     this->lines_cleared = 0;
                     if(curr_level_counter > MAX_LEVEL_COUNTER){
-                        curr_level_counter -= 2000;
+                        curr_level_counter -= 5;
                     }
                     else {
                         curr_level_counter = MAX_LEVEL_COUNTER;
@@ -58,8 +58,6 @@ int GameLoop::start(){
             game_board.movePiece(inputManager.interpretInput(input_received));
         }
 
-        // TODO: el programa usa mucho la CPU -> ver de usar 'sleep' o
-        //       threads para aliviar ese sobreuso
         this->counter++;
 
         // DEBUG
@@ -67,10 +65,13 @@ int GameLoop::start(){
         this->game_board.getPlayerPosition(x, y, height); 
         mvprintw(5, 22, "Pieza actual: (%d, %d) ", x, y); 
         mvprintw(6, 22, "Posicion mas baja: %d ", height + y);
+        mvprintw(7, 22, "Counter: %d ", counter);
         // END DEBUG
 
         board = this->game_board.getBoard();
         window.showWindow(board, this->level);
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(20));
        
     }
 
