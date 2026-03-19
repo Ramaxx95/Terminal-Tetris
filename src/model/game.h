@@ -8,6 +8,7 @@
 #include <ios>
 
 #include "gameloop.h"
+#include "../view/scoreDisplay.h"
 
 #define PLAY_GAME 1
 #define SEE_HIGHSCORES 2

@@ -61,11 +61,11 @@ int GameLoop::start(){
         this->counter++;
 
         // DEBUG
-        int x = 0, y = 0, height = 0;
-        this->game_board.getPlayerPosition(x, y, height); 
-        mvprintw(5, 22, "Pieza actual: (%d, %d) ", x, y); 
-        mvprintw(6, 22, "Posicion mas baja: %d ", height + y);
-        mvprintw(7, 22, "Counter: %d ", counter);
+        // int x = 0, y = 0, height = 0;
+        // this->game_board.getPlayerPosition(x, y, height); 
+        // mvprintw(5, 22, "Pieza actual: (%d, %d) ", x, y); 
+        // mvprintw(6, 22, "Posicion mas baja: %d ", height + y);
+        // mvprintw(7, 22, "Counter: %d ", counter);
         // END DEBUG
 
         board = this->game_board.getBoard();

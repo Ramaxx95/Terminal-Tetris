@@ -5,6 +5,7 @@ Game::Game() : is_running(true){}
 int Game::start() {
 
     std::system("clear");
+    ScoreDisplay scoreDisplay;
     
     // main loop
     while (this->is_running){
@@ -36,8 +37,7 @@ int Game::start() {
             case SEE_HIGHSCORES:
                 {
                     // Mostrar los highscores y volver al inicio
-                    std::cout << "[DEBUG] Mostrando Highscores...\n";
-                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                    scoreDisplay.showScore();
                     break;
                 }
 
@@ -48,7 +48,7 @@ int Game::start() {
             default:
                 {
                     std::cout << "Wrong value entered. Please try again\n";
-                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                    std::this_thread::sleep_for(std::chrono::seconds(2));
                     break;
                 }
         }
