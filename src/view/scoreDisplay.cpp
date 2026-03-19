@@ -8,7 +8,7 @@ void ScoreDisplay::showScore(){
     nodelay(stdscr, TRUE);
     curs_set(0);  
     
-    std::unordered_map<std::string, int> scores = this->fileManager.getScore();
+    std::map<std::string, int> scores = this->fileManager.getScore();
     
     if(scores.empty()){
         clear();

@@ -4,7 +4,6 @@
 #include <ncurses.h>
 #include <chrono>
 #include <thread>
-#include <vector>
 
 #include "../model/score/fileManager.h"
 

@@ -3,7 +3,14 @@
 #include "../controller/inputManager.h"
 #include "../view/gameWindow.h"
 
-GameLoop::GameLoop() : is_running(true), player(Player()), counter(0), level(1), lines_cleared(0), game_board(Board()) {}
+GameLoop::GameLoop() : 
+    is_running(true), 
+    player(Player()), 
+    counter(0), 
+    level(1), 
+    lines_cleared(0), 
+    game_board(Board()), 
+    fileManager(FileManager()) {}
 
 int GameLoop::start(){
 
@@ -30,6 +37,7 @@ int GameLoop::start(){
         if(this->counter >= curr_level_counter){
             
             if(this->game_board.playerReachedTop()){
+                fileManager.addScore(this->player.getName(), this->player.getScore());
                 window.showEndGame();
                 this->is_running = false;
                 continue;

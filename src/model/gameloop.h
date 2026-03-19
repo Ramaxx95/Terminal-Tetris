@@ -7,6 +7,7 @@
 
 #include "player.h"
 #include "board.h"
+#include "score/fileManager.h"
 
 #define BASE_LEVEL_COUNTER 40
 #define MAX_LEVEL_COUNTER 10
@@ -21,6 +22,7 @@ class GameLoop {
         int level;
         int lines_cleared;
         Board game_board;
+        FileManager fileManager;
 
     public:
         GameLoop();
