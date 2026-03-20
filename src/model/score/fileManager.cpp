@@ -16,7 +16,7 @@ std::map<std::string, int> FileManager::getScore(){
     char c;
     int idx = 0;
 
-    while(feof(f) != EOF){
+    while(c != EOF){
 
         idx = 0;
 
@@ -28,7 +28,7 @@ std::map<std::string, int> FileManager::getScore(){
         std::string player_name(buf, idx);
         idx = 0;
 
-        while((c = fgetc(f)) != ';'){
+        while((c = fgetc(f)) != '\n'){
             buf[idx] = c;
             idx++;
         }
@@ -37,6 +37,8 @@ std::map<std::string, int> FileManager::getScore(){
         int player_score = stoi(score_buf);
 
         scores[player_name] = player_score;
+
+        c = fgetc(f);
     }
 
     fclose(f);
@@ -124,10 +126,10 @@ void FileManager::writeScores(std::map<std::string, int> scores){
         fwrite(player_name.c_str(), player_name.length(), 1, f); // Escribo nombre
         fwrite(&semi_colon, sizeof(semi_colon), 1, f);
         fwrite(player_score.c_str(), player_score.length(), 1, f); // Escribo puntuacion
-        fwrite(&semi_colon, sizeof(semi_colon), 1, f);
         fwrite(&new_line, sizeof(new_line), 1, f);
     }
 
+    fputc(EOF, f);
     fclose(f);
 }
 

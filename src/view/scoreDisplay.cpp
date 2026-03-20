@@ -27,12 +27,12 @@ void ScoreDisplay::showScore(){
 
         for(size_t i = 0; i < scores.size(); i++){
             int num = i + 1;
-            std::string player_name = keys.at((int) i);
+            std::string player_name = keys[i];
             mvprintw(num, 1, "%d. %s - %d", num, player_name.c_str(), scores.at(player_name));
         }
         
         refresh();
-        std::this_thread::sleep_for(std::chrono::seconds(3));
+        std::this_thread::sleep_for(std::chrono::seconds(2));
     }    
     endwin();
     
