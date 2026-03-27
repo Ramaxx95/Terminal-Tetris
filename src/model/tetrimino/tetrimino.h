@@ -39,8 +39,6 @@ class Tetrimino{
         // Bloques que componen el Tetrimino
         std::vector<Block> blocks;
 
-        /*** METODOS ***/
-
     public:
         Tetrimino();
 

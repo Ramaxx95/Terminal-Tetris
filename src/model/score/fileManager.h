@@ -1,8 +1,6 @@
 #ifndef FILE_MANAGER_H
 #define FILE_MANAGER_H
 
-#include <exception>
-#include <map>
 #include <string>
 #include <list>
 

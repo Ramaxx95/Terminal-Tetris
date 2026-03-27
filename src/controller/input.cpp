@@ -5,7 +5,6 @@ Input::Input(bool &game_running) :
         initscr();
         cbreak();              // input inmediato
         noecho();              // no mostrar teclas
-        // keypad(stdscr, TRUE);  // habilita flechas
         nodelay(stdscr, TRUE); // getch no bloqueante
         curs_set(0);    
     }

@@ -36,7 +36,6 @@ int Game::start() {
 
             case SEE_HIGHSCORES:
                 {
-                    // Mostrar los highscores y volver al inicio
                     scoreDisplay.showScore();
                     break;
                 }

@@ -19,7 +19,7 @@ int GameLoop::start(){
     // pieza con la que arranca el jugador
     this->game_board.generateNewPiece();
 
-    // byte que guarda el input recibido (para DEBUG nada mas)
+    // byte que guarda el input recibido
     uint8_t input_received = 0;
     InputManager inputManager = InputManager();
 
@@ -67,14 +67,6 @@ int GameLoop::start(){
         }
 
         this->counter++;
-
-        // DEBUG
-        // int x = 0, y = 0, height = 0;
-        // this->game_board.getPlayerPosition(x, y, height); 
-        // mvprintw(5, 22, "Pieza actual: (%d, %d) ", x, y); 
-        // mvprintw(6, 22, "Posicion mas baja: %d ", height + y);
-        // mvprintw(7, 22, "Counter: %d ", counter);
-        // END DEBUG
 
         board = this->game_board.getBoard();
         window.showWindow(board, this->level);

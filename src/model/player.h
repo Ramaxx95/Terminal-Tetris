@@ -10,13 +10,10 @@ class Player {
     private:
         std::string name;
         unsigned int score;
-        // Tetrimino curr_tetris;
 
     public:
         Player();
         int updateScore(unsigned int add_score);
-        // int rotatePiece();
-
         std::string getName();
         unsigned int getScore();
         ~Player();

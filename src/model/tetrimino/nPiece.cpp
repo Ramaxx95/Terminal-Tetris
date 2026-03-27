@@ -29,7 +29,6 @@ int NPiece::rotate(){
     }
 
     if(this->curr_shape == 1){
-        // Notar como el extremo superior izquierdo de esta pieza no lo ocupa ningun bloque
         this->blocks[0].changePosition(this->x, this->y);
         this->blocks[1].changePosition(this->x + 1, this->y);
         this->blocks[2].changePosition(this->x + 1, this->y + 1);
@@ -46,7 +45,6 @@ int NPiece::rotate(){
         this->height = 2;
     }
     else if (this->curr_shape == 2){
-        // Notar como ahora el bloque "3" se encuentra en el extremo superior izquierdo de esta pieza
         this->blocks[0].changePosition(this->x + 1, this->y);
         this->blocks[1].changePosition(this->x + 1, this->y + 1);
         this->blocks[2].changePosition(this->x, this->y + 1);

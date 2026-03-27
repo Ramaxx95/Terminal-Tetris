@@ -56,6 +56,18 @@ void ScoreDisplay::showScore(){
                 }
                 else{
                     mvprintw(num, 1, "%d. %s - %d", num, it->name.c_str(), it->score);
+                    attroff(COLOR_PAIR(4));
+                }
+                num++;
+            }
+        }
+        else{
+            for(auto it = scores.begin(); it != scores.end(); it++){
+                if(num < 10){
+                    mvprintw(num, 1, " %d. %s - %d", num, it->name.c_str(), it->score);    
+                }
+                else{
+                    mvprintw(num, 1, "%d. %s - %d", num, it->name.c_str(), it->score);
                 }
                 num++;
             }
@@ -63,7 +75,8 @@ void ScoreDisplay::showScore(){
         
         
         refresh();
-        std::this_thread::sleep_for(std::chrono::seconds(2));
+        std::this_thread::sleep_for(std::chrono::seconds(4));
+        clear();
     }    
     endwin();
     

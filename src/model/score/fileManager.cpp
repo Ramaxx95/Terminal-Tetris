@@ -53,7 +53,7 @@ std::list<PlayerScore> FileManager::getScore(){
 
 void FileManager::addScore(std::string player_name, int score){
 
-    // Preparamos el map para luego escribirlo
+    // Preparamos la lista para luego escribirlo
     std::list<PlayerScore> scores = updateScore(player_name, score);
 
     // Reescribimos el archivo
