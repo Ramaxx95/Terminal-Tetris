@@ -28,6 +28,7 @@ void ScoreDisplay::showScore(){
         mvprintw(2, 1, "Get back and play!");
         refresh();
         std::this_thread::sleep_for(std::chrono::seconds(3));
+        clear();
     }
     else{
         clear();
