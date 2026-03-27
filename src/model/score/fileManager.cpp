@@ -2,11 +2,11 @@
 
 FileManager::FileManager(){}
 
-std::map<std::string, int> FileManager::getScore(){
+std::list<PlayerScore> FileManager::getScore(){
 
     FILE* f = fopen(FILE_NAME, "r");
 
-    std::map<std::string, int> scores;
+    std::list<PlayerScore> scores;
 
     if(f == nullptr){
         return scores;
@@ -16,9 +16,10 @@ std::map<std::string, int> FileManager::getScore(){
     char c;
     int idx = 0;
 
-    while(c != EOF){
+    while((c = fgetc(f)) != EOF){
 
         idx = 0;
+        buf[idx++] = c;
 
         while((c = fgetc(f)) != ';'){
             buf[idx] = c;
@@ -34,11 +35,14 @@ std::map<std::string, int> FileManager::getScore(){
         }
 
         std::string score_buf(buf, idx);
-        int player_score = stoi(score_buf);
 
-        scores[player_name] = player_score;
+        PlayerScore p_score;
+        p_score.name = player_name;
+        p_score.score = stoi(score_buf);
 
-        c = fgetc(f);
+
+        scores.push_back(p_score);
+
     }
 
     fclose(f);
@@ -50,7 +54,7 @@ std::map<std::string, int> FileManager::getScore(){
 void FileManager::addScore(std::string player_name, int score){
 
     // Preparamos el map para luego escribirlo
-    std::map<std::string, int> scores = updateScore(player_name, score);
+    std::list<PlayerScore> scores = updateScore(player_name, score);
 
     // Reescribimos el archivo
     writeScores(scores);
@@ -58,70 +62,46 @@ void FileManager::addScore(std::string player_name, int score){
 
 // ### Private Funcions ###
 
-std::map<std::string, int> FileManager::updateScore(std::string player_name, int score){
+std::list<PlayerScore> FileManager::updateScore(std::string player_name, int score){
     
-    std::map<std::string, int> scores = getScore();
+    std::list<PlayerScore> scores = getScore();
     
-    if(scores.empty()){
-        scores[player_name] = score;
+    PlayerScore p_score;
+    p_score.name = player_name;
+    p_score.score = score;
+
+    scores.push_back(p_score);
+
+    // Funcion lambda para comparar puntuaciones
+    auto compareByScoreDesc = [](const PlayerScore a, const PlayerScore& b) {
+        return a.score > b.score;
+    };
+
+    scores.sort(compareByScoreDesc);
+
+    // Maximo de 10 puntuaciones
+    if(scores.size() > 10){
+        scores.resize(10);
     }
-    else{
-        std::vector<std::string> keys = getKeys(scores);
-
-        std::string player_name_tmp;
-        int score_tmp;
-
-        for(size_t i = scores.size() - 1; i > 0; i--){
-            player_name_tmp = keys[i];
-            score_tmp = scores[player_name_tmp];
-
-            if(score >= score_tmp){
-                auto player_replace = scores.extract(player_name_tmp);
-
-                player_name_tmp = keys[i - 1];
-                score_tmp = scores[player_name_tmp];
-                
-                player_replace.key() = player_name_tmp;
-                scores.insert(std::move(player_replace));
-                scores[player_name_tmp] = score_tmp;
-
-                // La puntuacion agregada es la mas alta
-                if(i == 1){
-                    player_name_tmp = keys[0];
-                    auto player_replace = scores.extract(player_name_tmp);
-                    player_replace.key() = player_name;
-                    scores.insert(std::move(player_replace));
-                    scores[player_name] = score;
-                }
-            }
-            else if((score < score_tmp) && (i < (scores.size() - 1))){
-                auto player_replace = scores.extract(player_name_tmp);
-                player_replace.key() = player_name;
-                scores.insert(std::move(player_replace));
-                scores[player_name] = score;
-            }
-            else{
-                break;
-            }
-        }
-
-    }
-
     return scores;
 }
 
-void FileManager::writeScores(std::map<std::string, int> scores){
+void FileManager::writeScores(std::list<PlayerScore> scores){
     
     FILE* f = fopen(FILE_NAME, "w");
 
-    std::vector<std::string> keys = getKeys(scores);
-
     char semi_colon = ';';
     char new_line = '\n';
+    
+    auto it = scores.begin();
     for(size_t i = 0; i < scores.size(); i++){
 
-        std::string player_name = keys[i];
-        std::string player_score = std::to_string(scores[player_name]);
+        if(i > 0){
+            std::advance(it, 1);
+        }
+        
+        std::string player_name = it->name;
+        std::string player_score = std::to_string(it->score);
 
         fwrite(player_name.c_str(), player_name.length(), 1, f); // Escribo nombre
         fwrite(&semi_colon, sizeof(semi_colon), 1, f);
@@ -131,14 +111,6 @@ void FileManager::writeScores(std::map<std::string, int> scores){
 
     fputc(EOF, f);
     fclose(f);
-}
-
-std::vector<std::string> FileManager::getKeys(std::map<std::string, int> scores){
-    std::vector<std::string> keys;
-    for(auto const& [key, val] : scores) {
-        keys.push_back(key);
-    }
-    return keys;
 }
 
 FileManager::~FileManager(){}

@@ -4,21 +4,26 @@
 #include <exception>
 #include <map>
 #include <string>
-#include <vector>
+#include <list>
 
 #define FILE_NAME "../Tetris/player_score.csv"
+
+// Entidad que se encarga de mantener la data de cada jugador
+struct PlayerScore{
+    std::string name;
+    int score;
+};
 
 // Clase encargada de lectura y escritura de puntuaciones
 class FileManager {
 
     private:
-        std::map<std::string, int> updateScore(std::string player_name, int score);
-        void writeScores(std::map<std::string, int> scores);
-        std::vector<std::string> getKeys(std::map<std::string, int> scores);
+        std::list<PlayerScore> updateScore(std::string player_name, int score);
+        void writeScores(std::list<PlayerScore> scores);
 
     public:
         FileManager();
-        std::map<std::string, int> getScore();
+        std::list<PlayerScore> getScore();
         void addScore(std::string player_name, int score);
         ~FileManager();
 }; 
