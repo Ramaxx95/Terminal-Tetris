@@ -4,3 +4,6 @@ bin
 
 #ejecutable
 tetris
+
+#database
+*.csv

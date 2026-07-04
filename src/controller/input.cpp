@@ -12,7 +12,7 @@ Input::Input(bool &game_running) :
 uint8_t Input::getInput() {
 
     this->character_input = getch();
-    uint8_t action;
+    uint8_t action = NO_INPUT;
 
     switch (this->character_input) {
         case 'a':

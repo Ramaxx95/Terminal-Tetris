@@ -4,7 +4,7 @@ Game::Game() : is_running(true){}
 
 int Game::start() {
 
-    std::system("clear");
+    int result = std::system("clear");
     ScoreDisplay scoreDisplay;
     
     // main loop
@@ -24,7 +24,7 @@ int Game::start() {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         
-        std::system("clear");
+        result = std::system("clear");
 
         switch (player_input){
             case PLAY_GAME:
@@ -53,11 +53,11 @@ int Game::start() {
         }
 
         // Limpiar pantalla
-        std::system("clear");
+        result = std::system("clear");
 
     }
     
-    return 0;
+    return result;
 }
 
 Game::~Game() {}
