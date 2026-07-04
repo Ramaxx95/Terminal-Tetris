@@ -1,6 +1,9 @@
 # Terminal Tetris
 This is a little project I made to challenge myself. The idea was to create from scratch the original Tetris using only standard libraries for C++.
 
+
+![Animated Demo](Media/Tetris.gif)
+
 ## What you need
 * **C++17** libraries or higher
 * **GNU Make 4.3** or higher for compiling
@@ -28,3 +31,11 @@ to play the game.
 * **A/D** - Move left or right
 * **S** - Move down faster
 * **Space** - Rotate piece
+
+## Screenshots
+![Alt Text](Media/Main_menu.png)
+![Alt Text](Media/Enter_name.png)
+![Alt Text](Media/Main_game.png)
+![Alt Text](Media/Main_game_advanced.png)
+![Alt Text](Media/Game_over.png)
+![Alt Text](Media/Scoreboard.png)
